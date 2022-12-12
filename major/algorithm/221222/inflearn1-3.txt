@@ -1,0 +1,32 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        String s = sc.nextLine();
+        String[] ans = s.split(" ");
+        String relans ="";
+
+        int sol = 0;
+        for(String x:ans){
+            int len = x.length();
+            if(len>sol){
+                sol = len;
+                relans =x;
+            }
+        }
+
+        System.out.println(relans);
+
+
+
+
+
+
+
+
+
+    }
+}
+
