@@ -26,5 +26,7 @@ public abstract class Unit {
     public void decreaseStrength(int strikingPower) {
         this.strength -= strikingPower;
     }
+
+    
 }
 ```
