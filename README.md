@@ -12,7 +12,11 @@
 
 #### 📚자바의 정석
 - <p>6장. <a href="https://github.com/chchlee/self-study/blob/java/major/%EC%88%98%EC%97%85/%EC%9E%90%EB%B0%94%EC%9D%98%EC%A0%95%EC%84%9D/Chap6.%EA%B0%9D%EC%B2%B4%EC%A7%80%ED%96%A5%20%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D.md">객체지향 프로그래밍 I</a>
+</p>
+
 - <p>7장. <a href="https://github.com/chchlee/self-study/blob/java/major/%EC%88%98%EC%97%85/%EC%9E%90%EB%B0%94%EC%9D%98%EC%A0%95%EC%84%9D/Chap7.%EA%B0%9D%EC%B2%B4%EC%A7%80%ED%96%A5%20%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D%202.md">객체지향 프로그래밍 II</a>
 </p>
-- <p>8장. <a href="https://github.com/chchlee/self-study/blob/java/major/%EC%88%98%EC%97%85/%EC%9E%90%EB%B0%94%EC%9D%98%EC%A0%95%EC%84%9D/Chap7.%EA%B0%9D%EC%B2%B4%EC%A7%80%ED%96%A5%20%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D%202.md">예외처리</a>
+
+- <p>8장. <a href="https://github.com/chchlee/self-study/blob/java/major/%EC%88%98%EC%97%85/%EC%9E%90%EB%B0%94%EC%9D%98%EC%A0%95%EC%84%9D/Chap8.%EC%98%88%EC%99%B8%EC%B2%98%EB%A6%AC.md">예외처리</a>
 </p>
+https://github.com/chchlee/self-study/blob/java/major/%EC%88%98%EC%97%85/%EC%9E%90%EB%B0%94%EC%9D%98%EC%A0%95%EC%84%9D/Chap8.%EC%98%88%EC%99%B8%EC%B2%98%EB%A6%AC.md
