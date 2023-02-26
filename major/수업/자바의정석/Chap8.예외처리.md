@@ -64,3 +64,6 @@ Exception 클래스들은 주로 외부의 영향으로 발생할 수 있는 것
 
 ### 1.8 fianally 블럭
 finally 블럭은 예외의 발생여부에 상관없이 실행되어야할 코드를 포함시킬 목적으로 사용된다. try-catch-fianlly의 순서로 구성된다.
+
+### 1.9 자동 자원 반환 - try-with-fianlly문
+주료 입출력에 사
