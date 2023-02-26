@@ -174,3 +174,18 @@ Queue의 메서드
 #### 스택과 큐의 활용
 - 스택 : 수식계산, 수식괄호검사, 워드프로세서 undo/redo, 웹브라우저 뒤로/앞으로
 - 큐 : 최근사용문서, 인쇄작업 대기목록, 버퍼(buffer)
+
+#### PriorityQueue
+저장한 순서에 관계 없이 우선순위(priority)가 높은 것부터 꺼내게 된다는 특징이 있다. 그리고 null은 저장할 수 없다. PriorityQueue는 저장공간으로 배열을 사용하며, 각 요소를 heap이라는 자료구조의 형태로 저장한다. 힙은 이진 트리의 한 종류로 가장 큰 값이나 가장 작은 값을 빠르게 찾을 수 있다는 장점이 있다.
+
+#### Dequeu(Double-Ended Queue)
+Deque(덱, 또는 디큐)는 양쪽 끝에 추가/삭제가 가능하다. Deque의 조상은 Queue이며, 구현체로는 ArrayDeque와 LinkedList 등이 있다.
+Deque는 스택과 큐를 합쳐놓은 것과 같으며 스택으로 사용할 수도 있고, 큐로사용할 수도 있다.
+
+|Deque|Queue|Stack|
+|--|--|--|
+|offerLast()|offer()|push()|
+|pollLast()|-|pop()|
+|pollFirst()|poll()|-|
+|peekFirst()|peek()||
+|peekLast()|-|peek()|
