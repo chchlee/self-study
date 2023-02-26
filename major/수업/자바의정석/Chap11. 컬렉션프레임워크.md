@@ -178,7 +178,7 @@ Queue의 메서드
 #### PriorityQueue
 저장한 순서에 관계 없이 우선순위(priority)가 높은 것부터 꺼내게 된다는 특징이 있다. 그리고 null은 저장할 수 없다. PriorityQueue는 저장공간으로 배열을 사용하며, 각 요소를 heap이라는 자료구조의 형태로 저장한다. 힙은 이진 트리의 한 종류로 가장 큰 값이나 가장 작은 값을 빠르게 찾을 수 있다는 장점이 있다.
 
-#### Dequeu(Double-Ended Queue)
+#### Deque(Double-Ended Queue)
 Deque(덱, 또는 디큐)는 양쪽 끝에 추가/삭제가 가능하다. Deque의 조상은 Queue이며, 구현체로는 ArrayDeque와 LinkedList 등이 있다.
 Deque는 스택과 큐를 합쳐놓은 것과 같으며 스택으로 사용할 수도 있고, 큐로사용할 수도 있다.
 
@@ -189,3 +189,36 @@ Deque는 스택과 큐를 합쳐놓은 것과 같으며 스택으로 사용할 �
 |pollFirst()|poll()|-|
 |peekFirst()|peek()||
 |peekLast()|-|peek()|
+
+### 1.5 Iterator, ListIterator, Enumeration
+Iterator, ListIterator, Enumeration은 모두 컬력션에 저장된 요소를 접근하는데 사용되는 인터페이스이다. Enumeration은 Iterator의 구버전이며, ListIterator는 Iterator의 기능을 향상 시킨 것이다.
+
+#### Iterator
+컬렉션 프레임워크에서는 컬렉션에 저장된 요소들을 읽어오는 방법을 표준화하였다. 컬렉션에 저장된 각 요소에 접근하는 기능을 가진 Iterator 인터페이스를 정의하고, Colleciton 인터페이스에는 Iterator를 반환하는 iterator()를 정의하고 있다.
+
+|메서드|설명|
+|--|--|
+|boolean hasNext()|읽어 올 요소가 있는지 확인한다. |
+|Object next()|다음 요소를 읽어 온다. next()를 호출하기 전에 hasNext()를 호출해서 읽어 올 요소가 있는지 확인하는 것이 안전하다.|
+|void remove()|next()로 읽어온 요소를 삭제한다. next()를 호출할 다음에 remove()를 호출해야 한다.(선택적 기능)|
+
+Collection에 없고 ArrayList에만 있는 메서드를 사용하는 것이 아니라면, Collection 타입의 참조변수로 선언하는 것이 좋다. 만일 Colleciton 인터페이스를 구현한 다른 클래스, 예를 들어 LinkedList로 바꿔야 한다면 선언문 하나만 변경하면 나머지 코드를 검토하지 않아도 된다. 참조변수 타입이 Colleciton이므로 Collection에 정의되지 않은 메서드는 사용되지 않았을 것이 확실하기 때문이다. 그러나 참조변수 타입을 ArrayList로 했을경우, 선언문 이후 문장들을 검토해야 한다. Collection에 정의되지 않은 메서드를 호출했을 수 있기 때문이다.
+
+Map인터페이스를 구현한 컬렉션 클래스는 키와 값을 쌍으로 저장하고 있기 때문에 iterator()를 직접 호출할 수 없고, 그 대신 keySet()이나 entrySet()과 같은 메서드를 통해서 키와 값을 각각 따로 Set의 형태로 얻어온 후에 다시 iterator()를 호출해야 Iterator를 얻을 수 있다.
+
+```java
+Map map = new HashMap();
+...
+Iterator it = map.entrySet().iterator();
+```
+
+<div align="center">
+<img src = "https://user-images.githubusercontent.com/97272787/221426629-b0463e3d-5136-4234-a86d-79e3a3ca589c.png"> </div>
+
+#### ListIterator와 Enumeration
+ListIterator는 Iterator에 양방향 조회기능을 추가한 것(List를 구현한 경우에만 사용가능)
+|메서드|설명|
+|--|--|
+|boolean hasPrevious()|읽어 올 이전 요소가 남아있는지 확인한다.|
+|Object previous()|이전 요소를 읽어온다.|
+|int previousIndex()|이전 요소의 index를 반환한다.|
