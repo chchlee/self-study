@@ -265,3 +265,68 @@ Comparable 을 구현하고 있는 클래스들은 같은 타입의 인스턴스
 ### 1.8 HashSet
 HashSet은 Set인터페이스를 구현한 대표적인 컬렉션이다.
 HashSet에 새로운 요소를 추가할 때는 add나 addAll메서드를 사용한다.
+
+### 1.9 TreeSet
+TreeSet은 이진 검색 트리(binary Search Tree)라는 자료구조 형태로 데이터를 저장하는 컬렉션 클래스이다. 이진 검색 트리는 정렬, 검색, 범위 검색에 높은 성능을 보이는 자료구조 이며 TreeSet은 레드블랙트리로 구현되어 있다.
+그리고 Set 인터페이스로 구현되어 있으므로 중복된 데이터의 저장을 허용하지 않으면서 정렬된 위치에 저장하므로 저장순서를 유지하지도 않는다.
+
+<div align="center">
+<img src="https://user-images.githubusercontent.com/97272787/221512063-6d4fa30b-ba58-4031-bdb4-e74a447ee703.png">
+</div>
+
+```java
+class TreeNode{
+    TreeNode left;
+    Object element; // 객체를 저장하기 위한 참조변수
+    TreeNode right;
+}
+```
+
+부모노드 왼쪽에는 부모보다 작은 자식 노드, 오른쪽에는 부모보다 큰 자식 노드가 위치해 있다.
+
+|메서드|설명|
+|--|--|
+|Object first()|정렬된 순서에서 첫 번째 순서를 반환한다.|
+|Object last()|정렬된 순서에서 마지막 객체를 반환한다.|
+|Object floor()|지정된 객체와 같은 객체를 반환. 없으면 작은 값을 가진 객체 중 제일 작은 값을 반환|
+|Object higher(Object o)|지정된 객체보다 큰 값을 가진 객체 중 제일 가까운 값의 객체를 반환|
+|SortedSet headSet(Object toElement)|지정된 값보다 작은 값의 객체들을 반환한다.|
+|SortedSet tailSet(Object fromElement|지정된 객체보다 큰 값의 객체들을 반환한다.|
+|Sorted subSet(Object fromElement, Object toElement)|범위 검색의 결과를 반환|
+
+
+### 1.10 HashMap과 Hashtable
+Hashtable과 HashMap의 관계는 ArrayList와 Vector와 같아서 Hashtable보다 HashMap을 사용할 것을 권한다.
+
+HashMap은 Entry라는 내부 클래스를 정의하고, 다시 Entry 타입의 배열을 선언하고 있다. 키(Key)와 값(Value)은 별개의 값이 아니라 서로 관련된 값이기 때문에 각각의 배열로 선언하기 보다 하나의 클래스로 정의해서 하나의 배열로 다루는 것이 데이터의 무결성(integrity)적인 측면에서 더 바람직하다.
+
+|비객체지향적인 코드|객체지향적인 코드|
+|--|--|
+|Object[] key; </br> Object[] value;|Entry[] table; </br> class Entry { </br>   Object key; </br> Object value;}|
+
+
+|메서드|설명|
+|--|--|
+|boolean containsKey(Object key)|HashMap에 지정된 key가 있는지 알려준다.|
+|boolean containsValue(Object value)|HashMap에 지정된 value가 포함되어 있는지 알려준다.|
+|Set entrySet()|HashMap에 저장된 Key와 Value를 entry 형태로  Set에 저장하여 반환한다.|
+|Object getOrDefault(Object key, Object defaultValue)|지정된 key의 값을 반환. 키를 못찾으면 defaultValue로 지정된 값을 반환.|
+
+
+#### 해싱과 해시함수
+해싱이란 해시함수를 이용해서 데이터를 해시 테이블에 저장하는 것을 말하고 검색하는 기법을 말한다. 해시함수는 데이터가 저장되어 있는 곳을 알려주기 때문에 다량의 데이터 중에서도 원하는 데이터를 빠르게 찾을 수 있다.
+해싱에서 사용하는 자료구조는 다음과 같이 배열과 링크드 리스트로 이루어져 있다.
+
+
+<div align="center">
+<img src="https://user-images.githubusercontent.com/97272787/221518327-8df17377-edf8-4136-b688-8251803d2db0.png">
+</div>
+
+저장할 데이터의 키를 해시함수에 넣으면 배열의 한 요소를 얻게 되고, 다시 그 곳에 연결되어 있는 링크드 리스트에 저장하게 된다.
+
+### 1.11 TreeMap
+TreeMap은 이진검색트리 형태로 키와 값의 쌍으로 이루어진 데이터를 저장한다. 그래서 검색과 정렬에 적합한 컬렉션 클래스이다.
+
+### 1.12 Properties
+Properties는 HashMap의 구버전인 HashTable을 상속받아 구현한 것으로, HashTable은 키와 값을(Object, Object) 형태로 저장하는데 비해 Properties는 (String, String)의 형태로 저장하는 보다 단순화된 컬렉션 클래스이다.
+주로 애플리케이션의 환경설정과 관련된 속성(property)을 저장하는데 사용되며, 데이터를 파일로부터 읽고 쓰는 편리한 기능을 제공한다.
