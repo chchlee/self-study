@@ -222,3 +222,39 @@ ListIterator는 Iterator에 양방향 조회기능을 추가한 것(List를 구�
 |boolean hasPrevious()|읽어 올 이전 요소가 남아있는지 확인한다.|
 |Object previous()|이전 요소를 읽어온다.|
 |int previousIndex()|이전 요소의 index를 반환한다.|
+
+
+### 1.6 Arrays
+Arrays 클래스는 배열을 다루는데 유용한 클래스들이 정의되어 있다.
+
+#### 배열의 복사 - copyOf(), copyOfRange()
+copyOf는 배열 전체를, copyOfRange()는 배열의 일부를 복사해서 새로운 배열을 만들어서 반환한다.
+
+#### 배열 채우기 - fill(), setAll()
+fill()은 배열의 모든 요소를 지정된 값으로 채운다. setAll()은 배열을 채우는데 사용할 함수형 인터페이스를 매개변수로 받는다. 이 메서드를 호출 할 때는 함수형 인터페이스를 구현한 객체로 매개변수로 지정하던가 아니면 람다식을 지정해야 한다.
+
+```java
+Arrays.setAll(arr, () -> (int) (Math.random() * 5) +1 );
+```
+
+#### 배열의 정렬과 검색 - sort(), binarySearch()
+sort()는 배열을 정렬할 때, 그리고 배열에 저장된 요소를 검색할 경우는 binarySearch()를 사용한다. binarySearch()는 배열에서 저장된 값이 저장된 위치(index)를 찾아서 반환하는데, 반드시 배열이 정렬되어야만 올바른 결과를 얻는다.
+
+#### 배열의 비교와 출력 - equals(), toString()
+toString()은 배열의 모든 요소를 문자열로 편하게 출력할 수 있다.
+deepToString()은 배열의 모든 요소를 재귀적으로 접근해서 다차원 배열 출력이 가능하게 한다.
+eqauls()는 두 배열에 저장된 모든 요소를 비교해서 같으면 true, 다르면 false를 반환하게 한다.
+다차원 배열에서는 deepEquals()를 사용하면 된다.
+
+#### 배열을 List로 변환 - asList()
+asList()는 배열을 List()로 담아서 반환한다.
+한 가지 주의할 점은 asList()가 반환한 List()의 크기를 변경할 수 없다.
+
+#### pararellXXX(), spliterator(), stream()
+'pararell'로 시작하는 메서드들은 보다 빠른 결과를 얻기 위해 여러 쓰레드가 나누어 작업을 처리하도록 한다.
+spliterator는 여러개의 쓰레드가 처리할 수 있게 하나의 작업을 여러 작업으로 나누는 Spliterator를 반환하며, stream은 컬렉션을 스트림으로 변환한다.
+
+### 1.7 Comparator와 Comparable
+Arrays.sort()를 하면 컴퓨터가 자동으로 정렬을 한 것 처럼 보이지만 사실은 Comparable() 구현에 의해서 정렬된 것이다.
+Comparator과 Comparable은 모두 인터페이스로 컬렉션을 정렬하는데 필요한 메서드를 정의하고 있다.
+Comparable 을 구현하고 있는 클래스들은 같은 타입의 인스턴스끼리 서로 비교하고 있는 클래스들을 오름차순으로 정렬할 수 있게 구현되어 있다.
