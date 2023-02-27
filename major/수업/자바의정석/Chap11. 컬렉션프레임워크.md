@@ -330,3 +330,7 @@ TreeMap은 이진검색트리 형태로 키와 값의 쌍으로 이루어진 데
 ### 1.12 Properties
 Properties는 HashMap의 구버전인 HashTable을 상속받아 구현한 것으로, HashTable은 키와 값을(Object, Object) 형태로 저장하는데 비해 Properties는 (String, String)의 형태로 저장하는 보다 단순화된 컬렉션 클래스이다.
 주로 애플리케이션의 환경설정과 관련된 속성(property)을 저장하는데 사용되며, 데이터를 파일로부터 읽고 쓰는 편리한 기능을 제공한다.
+
+<div align="center">
+<img src="https://user-images.githubusercontent.com/97272787/221521030-0449057e-b65a-4e0f-b3ec-e4fa4bad0fb6.png">
+</div>
