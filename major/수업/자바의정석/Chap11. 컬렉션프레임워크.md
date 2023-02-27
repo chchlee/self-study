@@ -35,7 +35,7 @@ List와 Set의 조상인 Collection인터페이스에는 다음과 같은 메서
 Iterator 인터페이스는 컬렉션에 포함된 객체들을 접근할 수 있는 방법을 제공한다.
 
 #### List인터페이스
-List인터페이스는 중복을 허용핮면서 저장순서가 유지되는 컬렉션을 구현하는데 사용된다.
+List인터페이스는 중복을 허용하면서 저장순서가 유지되는 컬렉션을 구현하는데 사용된다.
 <div align="center">
 <img src="https://velog.velcdn.com/images%2Foyeon%2Fpost%2F6a3b5891-8cb6-447d-a53d-3b943e03de2e%2Fimage.png">
 <p>List의 상속 계층도</p>
@@ -158,7 +158,7 @@ LinkedList는 Queue 인터페이스와 Deque인터페이스를 구현하도록 �
 |Object peek()|Stack의 맨 위에 저장된 객체를 반환. pop()과 달리 Stack에서 객체를 꺼내지는 않음|
 |Object pop()|Stack의 맨 위에 저장된 객체를 꺼낸다.|
 |Object push()|Stack에서 객체(item)를 저장한다.|
-|int search(Object o)|Stackdㅔ서 주어진 객체(o)를 찾아서 그 위치를 반환. 못찾으면 -1을 반환|
+|int search(Object o)|Stack에서 주어진 객체(o)를 찾아서 그 위치를 반환. 못찾으면 -1을 반환|
 
 Queue의 메서드
 
@@ -191,7 +191,7 @@ Deque는 스택과 큐를 합쳐놓은 것과 같으며 스택으로 사용할 �
 |peekLast()|-|peek()|
 
 ### 1.5 Iterator, ListIterator, Enumeration
-Iterator, ListIterator, Enumeration은 모두 컬력션에 저장된 요소를 접근하는데 사용되는 인터페이스이다. Enumeration은 Iterator의 구버전이며, ListIterator는 Iterator의 기능을 향상 시킨 것이다.
+Iterator, ListIterator, Enumeration은 모두 컬렉션에 저장된 요소를 접근하는데 사용되는 인터페이스이다. Enumeration은 Iterator의 구버전이며, ListIterator는 Iterator의 기능을 향상 시킨 것이다.
 
 #### Iterator
 컬렉션 프레임워크에서는 컬렉션에 저장된 요소들을 읽어오는 방법을 표준화하였다. 컬렉션에 저장된 각 요소에 접근하는 기능을 가진 Iterator 인터페이스를 정의하고, Colleciton 인터페이스에는 Iterator를 반환하는 iterator()를 정의하고 있다.
@@ -291,7 +291,7 @@ class TreeNode{
 |Object floor()|지정된 객체와 같은 객체를 반환. 없으면 작은 값을 가진 객체 중 제일 작은 값을 반환|
 |Object higher(Object o)|지정된 객체보다 큰 값을 가진 객체 중 제일 가까운 값의 객체를 반환|
 |SortedSet headSet(Object toElement)|지정된 값보다 작은 값의 객체들을 반환한다.|
-|SortedSet tailSet(Object fromElement|지정된 객체보다 큰 값의 객체들을 반환한다.|
+|SortedSet tailSet(Object fromElement)|지정된 객체보다 큰 값의 객체들을 반환한다.|
 |Sorted subSet(Object fromElement, Object toElement)|범위 검색의 결과를 반환|
 
 
@@ -302,7 +302,7 @@ HashMap은 Entry라는 내부 클래스를 정의하고, 다시 Entry 타입의 
 
 |비객체지향적인 코드|객체지향적인 코드|
 |--|--|
-|Object[] key; </br> Object[] value;|Entry[] table; </br> class Entry { </br>   Object key; </br> Object value;}|
+|Object[ ] key; </br> Object[ ] value;|Entry[ ] table; </br> class Entry { </br>   Object key; </br> Object value; </br>}|
 
 
 |메서드|설명|
@@ -314,7 +314,7 @@ HashMap은 Entry라는 내부 클래스를 정의하고, 다시 Entry 타입의 
 
 
 #### 해싱과 해시함수
-해싱이란 해시함수를 이용해서 데이터를 해시 테이블에 저장하는 것을 말하고 검색하는 기법을 말한다. 해시함수는 데이터가 저장되어 있는 곳을 알려주기 때문에 다량의 데이터 중에서도 원하는 데이터를 빠르게 찾을 수 있다.
+해싱이란 해시함수를 이용해서 데이터를 해시 테이블에 저장하고 검색하는 기법을 말한다. 해시함수는 데이터가 저장되어 있는 곳을 알려주기 때문에 다량의 데이터 중에서도 원하는 데이터를 빠르게 찾을 수 있다.
 해싱에서 사용하는 자료구조는 다음과 같이 배열과 링크드 리스트로 이루어져 있다.
 
 

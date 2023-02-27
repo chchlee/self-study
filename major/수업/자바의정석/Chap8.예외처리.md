@@ -9,7 +9,7 @@
 에러가 발생하면, 프로그램의 비정상적인 종료를 막을 길이 없지만, 예외는 발생하더라도 프로그래머가 이에 대한 적절한 코드를 미리 작성해놓음으로써 프로그램의 비정상적인 종료를 막을 수 있다.
 
 ### 1.2 예외 클래스의 계층 구조
-자바에서는 실행 시에 발생할 수 있는 오류(Exception과 Error)를 클래스로 정의함. 
+자바에서는 실행 시에 발생할 수 있는 오류(Exception과 Error)를 클래스로 정의함.
 모든 클래스의 조상은 Object클래스이므로 Exception과 Error 클래스 역시 Object 클래스의 자손.
 <div align="center">
 <img src="https://velog.velcdn.com/images/mingseok/post/55d9e691-cea8-4add-8859-327a9c1e4521/image.png">
@@ -26,9 +26,9 @@
 - Exception 클래스와 그 자손들
 - RuntimeException 클래스와 그 자손들
 
-RuntioneException 클래스들은 주로 프로그래머의 실수에 의해서 발생될 수 있는 예외들로 자바 프로그래밍 요소들과 관계가 깊다. 예를 들면, 배열의 범위에 벗어난다던가(ArrayIndexOutOfBoundsException), 값이 NuLL인 참조변수의 멤버를 호출하려 했다던가(NullPointerException), 클래스간의 형변환을 잘못했다던가(ClassCastException), 정수를 0으로 나누려고(ArithmeticException)하는 경우에 발생한다.
+RuntioneException 클래스들은 주로 프로그래머의 실수에 의해서 발생될 수 있는 예외들로 자바 프로그래밍 요소들과 관계가 깊다. 예를 들면, 배열의 범위에 벗어난다던가(ArrayIndexOutOfBoundsException), 값이 Null인 참조변수의 멤버를 호출하려 했다던가(NullPointerException), 클래스간의 형변환을 잘못했다던가(ClassCastException), 정수를 0으로 나누려고(ArithmeticException)하는 경우에 발생한다.
 
-Exception 클래스들은 주로 외부의 영향으로 발생할 수 있는 것들로서, 프로그램의 사 용자들의 동작에 의해서 발생하는 경우가 많다. 예를 들면, 존재하지 않는 파일 의 이름을 입력했다던가(FileNotFoundException), 실수로 클래스의 이름을 잘못적었다던가(ClasNotFoundException), 또는 입력한 데이터 형식이 잘못된
+Exception 클래스들은 주로 외부의 영향으로 발생할 수 있는 것들로서, 프로그램의 사용자들의 동작에 의해서 발생하는 경우가 많다. 예를 들면, 존재하지 않는 파일 의 이름을 입력했다던가(FileNotFoundException), 실수로 클래스의 이름을 잘못적었다던가(ClasNotFoundException), 또는 입력한 데이터 형식이 잘못된
 (Dataformat Exception) 경우에 발생한다.
 
 
