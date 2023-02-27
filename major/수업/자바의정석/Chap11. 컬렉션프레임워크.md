@@ -258,3 +258,10 @@ spliterator는 여러개의 쓰레드가 처리할 수 있게 하나의 작업�
 Arrays.sort()를 하면 컴퓨터가 자동으로 정렬을 한 것 처럼 보이지만 사실은 Comparable() 구현에 의해서 정렬된 것이다.
 Comparator과 Comparable은 모두 인터페이스로 컬렉션을 정렬하는데 필요한 메서드를 정의하고 있다.
 Comparable 을 구현하고 있는 클래스들은 같은 타입의 인스턴스끼리 서로 비교하고 있는 클래스들을 오름차순으로 정렬할 수 있게 구현되어 있다.
+
+- Comparable : 기본 정렬을 구현하는데 사용
+- Comparator : 기본 정렬기준 외에 다른 기준으로 정렬하고자 할 때 사용
+
+### 1.8 HashSet
+HashSet은 Set인터페이스를 구현한 대표적인 컬렉션이다.
+HashSet에 새로운 요소를 추가할 때는 add나 addAll메서드를 사용한다.
