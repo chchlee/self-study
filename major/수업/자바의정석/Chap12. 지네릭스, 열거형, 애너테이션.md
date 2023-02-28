@@ -115,7 +115,7 @@ Box<Apple> appleBox = new Box<Grape>(); // ERROR
 Box<Fruit> appleBox = new Box<Apple>(); // 에러. 대입된 타입이 다르다.
 ```
 
-단, 두 지네릭 클래스의 타입이 상속관계에 있고, 대입된 타입이 같은 것은 괜찮다. FruitBox는 Box의 자손이라 가정하자.
+단, 두 지네릭 클래스가 상속관계에 있고, 대입된 타입이 같은 것은 괜찮다. FruitBox는 Box의 자손이라 가정하자.
 ```java
 Box<Apple> appleBox = new FruitBox<Apple>(); // OK. 다형성
 ```
@@ -216,4 +216,45 @@ class Juicer {
         return new Juice(tmp);
     }
 }
+
+Fruit<Fruit> fruitBox = new FruitBox<Fruit>();
+Fruit<Apple> appleBox = new FruitBox<Apple>();
+
+System.out.println(Juicer.makeJuice(fruitBox)); // OK. FruitBox<Fruit>
+System.out.println(Juicer.makeJuice(appleBox)); // OK. appleBox<Fruit>
 ```
+
+## 1.6 지네릭 메서드
+메서드의 선언부에 지네릭 타입이 선언된 메서드를 지네릭 메서드라 한다. Collections.sort()가 바로 지네릭 메서드이며, 지네릭 타입의 선언 위치는 반환 타입의 바로 앞이다.
+`static <T> void sort(List<T> list, Comparator<? super T> c)`
+지네릭 클래스에 정의된 타입 매개변수와 지네릭 메서드에 정의된 타입 매개변수는 전혀 별개의 것이다. 같은 타입 문자 T를 사용해도 같은 것이 아니라는 것에 주의해야 했다.
+```java
+class FruitBox<T> {
+        ...
+    static <T> void sort(List<T> list, Comparator<? super T> c){
+        ...
+    }
+}
+```
+위의 코드에서 지네릭 클래스 FruitBox에 선언된 타입 매개변수 T와 지네릭 메서드 sort()에 선언된 타입 매개변수 T는 타입 문자만 같을 뿐 서로 다른 것이다. static 멤버에는 타입 매개변수를 사용할 수 없지만, 이처럼 메서드에 지네릭 타입을 선언하고 사용하는 것은 가능하다.
+
+<div align="center">
+<img src="https://user-images.githubusercontent.com/97272787/221922735-e7c05e33-5f53-4a8d-a140-f4f0e0b680bd.png">
+</div>
+
+이제 이 메서드를 호출할 때는 아래와 같이 타입 변수에 타입을 대입해야 한다.
+```java
+FruitBox<Fruit> fruitBox = new FruitBox<Fruit>;
+FruitBox<Apple> appleBox = new FruitBox<Apple>;
+...
+System.out.println(Juicer.<Fruit>makeJuice(fruitBox));
+System.out.println(Juicer.<Apple>makeJuice(appleBox));
+```
+
+그러나 대부분의 경우 컴파일러가 타입을 추정할 수 있기 때문에 생략해도 된다.
+
+지네릭 메서드는 매개변수의 타입이 복잡할 때도 유용하다. 만일 아래와 같은 코드가 있다면 타입을 별도로 선언함으로써 코드를 간략화 할 수 있다.
+
+<div align="center">
+<img src="https://user-images.githubusercontent.com/97272787/221923565-cd7d2c7e-9234-48b6-bdc5-bdacc82e3724.png">
+</div>
