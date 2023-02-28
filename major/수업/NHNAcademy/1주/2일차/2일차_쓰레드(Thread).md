@@ -15,18 +15,43 @@
 ## 유닉스 디렉토리
 
 ## 유닉스 기본 명령어
-- ls : 디렉토리의 파일 목록 조회
-- pwd : 현재 디렉토리
+- ls : list of directory, 디렉토리의 파일 목록 조회
+- pwd : current path, 현재 디렉토리, 위치
 - cd : change directory
 - mkdir : make directory
 - cp : copy
 - mv : move
 - rm : remove
 - cat : catalogue 파일의 내용을 화면에 출력
+- dd : 블록 단위로 파일을 복사하거나 파일 변환을 할 수 있는 명령어
+- expr : bash 창에서 연산을 할 수 있게 함. `$ expr 1 + 5 (공백을 반드시 입력해야 한다.)
+- launchctl : 시스템 전체나 사용자 단위로 적용되는 daemon/agent를 관리하는 launchd를 설정할 수 있는 인터페이스 명령어.
+- echo : 유닉스 및 유닉스 계열 운영체제에서 지정한 문자열 또는 텍스트를 출력하는 명령어.
+- df : 마운트된 파일 시스템의 크기와 용량을 보여주는 명령어로 전체 파일 시스템의 사용 현황을 한눈에 볼 수 있음.
+- test : 파일 존재유무 / 타입 / 권한을 체크할 때 사용하는 명령어.
+- csh : cshell
+- wait4path : 주어진 명령어가 namespace에 도달할 때 까지 기다린다.
+- unlink : 파일과 링크를 제거하기 위해 사용한다.
+- sleep : 프로그램의 실행을 일시적으로 정지 할 수 있다. `$ sleep 시간`
+- stty : 터미널 장치 인터페이스에 옵션을 설정할 때 사용한다.
+- date : 시간과 날짜를 표시
+- realpath : 물리적인 경로 반환
+- ps : process status
+- link : link file
+- tcsh : C shell with file name completion and command line editing
+- hostname : 현재 사용자 명 출력
+- dash : 우분투 6.06버전에 사용되는 쉘
+- sync : force completion of pending disk writes
+
 
 #### 명령어의 기본 형식
 `$<commnad> <option> <file or directory>`
 
+#### ll 명령어 사용하기
+```zsh
+$ echo "alias ll='ls -lGaf'" >> ~/.bash_profile
+$ source ~/.bash_profile
+```
 ## 표준 스트림
 - 유닉스 계열 운영체제에서 프로세스와 주변 장치 사이에 미리 연결된 통로
 - 물리적으로 연결된 시스템 콘솔의 키보드와 모니터 연결을 추상화
