@@ -15,10 +15,10 @@ class BarberShop {
         synchronized (queue) {
             if (queue.size() < numChairs) {
                 queue.add(customer);
-                System.out.println(customer + " has entered the shop and is waiting.");
+                System.out.println(customer + "이 대기 중입니다. ");
                 queue.notify();
             } else {
-                System.out.println("No chairs available. " + customer + " has left the shop.");
+                System.out.println("이용할 의자가 없습니다. " + customer + "이 떠납니다. ");
             }
         }
     }
@@ -26,11 +26,11 @@ class BarberShop {
     public Customer getCustomer() throws InterruptedException {
         synchronized (queue) {
             while (queue.isEmpty()) {
-                System.out.println("No customers waiting. Barber is sleeping.");
+                System.out.println("자는 중 zzz...");
                 queue.wait();
             }
             Customer customer = queue.poll();
-            System.out.println("Barber is cutting hair for " + customer);
+            System.out.println(customer + "의 머리를 정리하는 중... ");
             return customer;
         }
     }
@@ -81,7 +81,7 @@ class CustomerGenerator extends Thread {
             int i = 1;
             while (true) {
                 Thread.sleep(rand.nextInt(3000));
-                Customer customer = new Customer("Customer " + i);
+                Customer customer = new Customer("고객" + i);
                 shop.addCustomer(customer);
                 i++;
             }
