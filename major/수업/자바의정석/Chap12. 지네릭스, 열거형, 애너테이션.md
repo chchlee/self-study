@@ -224,7 +224,7 @@ System.out.println(Juicer.makeJuice(fruitBox)); // OK. FruitBox<Fruit>
 System.out.println(Juicer.makeJuice(appleBox)); // OK. appleBox<Fruit>
 ```
 
-## 1.6 지네릭 메서드
+### 1.6 지네릭 메서드
 메서드의 선언부에 지네릭 타입이 선언된 메서드를 지네릭 메서드라 한다. Collections.sort()가 바로 지네릭 메서드이며, 지네릭 타입의 선언 위치는 반환 타입의 바로 앞이다.
 `static <T> void sort(List<T> list, Comparator<? super T> c)`
 지네릭 클래스에 정의된 타입 매개변수와 지네릭 메서드에 정의된 타입 매개변수는 전혀 별개의 것이다. 같은 타입 문자 T를 사용해도 같은 것이 아니라는 것에 주의해야 했다.
@@ -258,3 +258,176 @@ System.out.println(Juicer.<Apple>makeJuice(appleBox));
 <div align="center">
 <img src="https://user-images.githubusercontent.com/97272787/221923565-cd7d2c7e-9234-48b6-bdc5-bdacc82e3724.png">
 </div>
+
+### 1.7 지네릭 타입의 형변환
+지네릭 타입과 원시 타입(raw type)간의 형변환이 가능할까?
+```java
+Box box = null;
+Box<Object> objBox = null;
+
+box = (Box)objBox; // OK. 지네릭 타입 -> 원시 타입. 경고 발생.
+objBox = (Box<Object>)box; // OK. 원시 타입 -> 지네릭 타입. 경고 발생.
+```
+지네릭 타입과 넌지네릭(non-generic) 타입간의 형변환은 항상 가능하다.
+
+
+```java
+Box<? extends Object> wBox = new Box<String>(); // 형변환 가능.
+```
+
+----
+### 참고 Optional 클래스
+### java.util.Optional<T> 클래스
+Optional<T> 클래스는 Integer나 Double 클래스처럼 'T' 타입의 객체를 포장해 주는 래퍼 클래스(Wrapper class)이다.
+이러한 Optional 객체를 사용하면 예상치 못한 NullPointerException 예외를 제공하는 메소드로 간단히 회피할 수 있다.
+즉, 복잡한 조건문 없이도 널(null) 값으로 인해 발생하는 예외를 처리할 수 있게 된다.
+
+### Optional 객체의 생성
+of() 메소드나 ofNullable() 메소드를 사용해서 Optional 객체를 생성할 수 있다.
+of() 메소드는 null이 아닌 명시된 값을 가지는 Optional 객체를 반환한다.
+
+따라서 만약 참조 변수의 값이 만에 하나 null이 될 가능성이 있다면, ofNullable() 메소드를 사용하여 Optional 객체를 생성하는 것이 좋다. ofNullable() 메소드는 명시된 값이 null이 아니면 명시된 값을 가지는 Optional 객체를 반환하며, 명시된 값이 null이면 비어있는 Optional 객체를 반환한다.
+
+```java
+Optional<String> opt = Optional.ofNullable("자바 Optional 객체");
+System.out.println(opt.get());
+```
+----
+
+```java
+Optional<?> EMPTY = new Optional<>();
+-> Optional<? extends Object> EMPTY = new Optional<>();
+-> Optional<? extends Object> EMPTY = new Optional<Object>();
+
+```
+
+```java
+Optional<?> wopt = new Optional<Object>();
+Optional<Object> oopt = new Optional<Object>();
+
+Optional<String> sopt = (Optional<String>)wopt; // OK. 형변환 가능
+Optional<String> sopt = (Optional<String>)oopt; // 에러. 형변환 불가
+```
+
+### 1.8 컴파일 타입의 제거
+컴파일러는 지네릭 타입을 이용해서 소스파일을 체크하고, 필요한 곳에 형변환을 넣어준다. 그리고 지네릭 타입을 제거한다. 즉, 컴파일된 파일(*.class)에는 지네릭 타입에 대한 정보가 없는 것이다.
+이렇게 하는 주된 이유는 지네릭이 도입되기 전 소스 코드와의 호환성을 유지하기 위해서이다.
+앞으로 가능하면 원시타입을 사용하지 않도록 하자. 언젠가는 분명히 새로운 기능을 위해 하위 호환성을 포기하게 될 때가 올 것이기 떄문이다.
+
+
+## 2. 열거형
+### 2.1 열거형이란?
+서로 연관된 상수들의 집합을 의미한다.
+열거형은 서로 관련된 상수를 편리하게 선언하기 위한 것으로 여러 상수를 정의할 때 사용하면 유용하다.
+
+```java
+class Card{
+    static final int CLOVER = 0;
+    static final int HEART = 1;
+    static final int DIAMOND = 2;
+    static final int SPADE = 3;
+
+    static final int TWO = 0;
+    static final int THREE = 1;
+    static final int FOUR = 2;
+
+    final int kind;
+    final int num;
+}
+```
+은 아래 열거형을 사용한 코드와 같다.
+```java
+class Card {
+    enum Kind { CLOVER, HEART, DIAMOND, SPADE }
+    enum VALUE { TWO, THREE, FOUR }
+
+    final Kind kind; // 타입이 int가 아닌 Kind임에 유의
+    final Value value;
+}
+```
+
+자바의 열거형은 타입에 안전한 열거형이라 실제 값이 같아도 타입이 다르면 컴파일 에러가 발생한다.
+이처럼 값뿐만 아니라 타입까지 체크하기 때문에 타입에 안전하다고 하는 것이다.
+
+## 2.2 열거형의 정의와 사용
+```java
+enum 열거형이름 { 상수명1, 상수명2, ... }
+```
+
+예를 들어 동서남북 4방향을 상수로 정의하는 열거형 Direction은 다음과 같다.
+```java
+enum Direction { EAST, SOUTH, WEST, NORTH }
+```
+
+이 열거형에 정의된 상수를 사용하는 방법은 '열거형이름.상수명'이다. 클래스의 static 변수를 참조하는 것과 동일하다.
+```java
+class Unit {
+    int x, y;
+    Direction dir;
+
+    void init() {
+        dir = Direction.EAST;
+    }
+}
+```
+
+열거형의 상수간의 비교에는 '=='를 사용할 수 있다. equals()가 아닌 '=='로 비교가 가능하다는 것은 그만큼 빠른 성능을 제공한다는 얘기다. 그러나 '<' , '>' 와 같은 비교연산자는 사용할 수 없고 compareTo()는 사용가능하다.
+
+```java
+if(dir==Direction.EAST) {
+    x++;
+} else if (dir > Direction.WEST) {
+    ...
+} else if (dir.compareTo(Direction.WEST) > 0){
+    ...
+}
+```
+
+다음과 같이 switch 문의 조건식에도 열거형을 사용할 수 있다.
+
+```java
+void move() {
+    switch(dir){
+        case EAST: // Direction.EAST라 쓰면 안된다.
+            x++;
+            break;
+        case WEST:
+            x--;
+            break;
+        case SOUTH:
+            y++;
+            break;
+        case NORTH:
+            y--;
+            break;
+    }
+}
+```
+
+### 2.3 열거형에 멤버 추가하기
+열거형 상수의 값이 불연속적인 경우에는 이때는 다음과 같이 열거형 상수의 이름 옆에 원하는 값을 괄호()와 함께 적어주면 된다.
+
+```java
+enum Direction { EAST(1), SOUTH(5), WEST(-1), NORTH(10) }
+```
+그리고 지정된 값을 저장할 수 있는 인스턴스 변수와 생성자를 새로 추가해 주어야 한다.
+이 때 주의할 점은, 먼저 열거형 상수를 모두 정의한 다음에 다른 멤버들을 추가해야 한다는 것이다. 그리고 열거형 상수의 마지막에 ';'도 잊지 말아야 한다.
+
+```java
+enum Direction {
+    EAST(1), SOUTH(5), WEST(-1), NORTH(10)
+
+    private final int value;
+    Direction(int value) { this.value = value; }
+
+    public int getValue() { return value; }
+    }
+```
+
+열거형의 인스턴스 변수는 반드시 final 이어야 한다는 제약은 없지만, value는 열거형 상수의 값을 저장하기 위한 것이므로 final을 붙였다.
+
+```java
+Direction d = new Direction(1); // 에러 열거형의 생성자는 외부에서 호출불가
+```
+
+필요하다면, 다음과 같이 하나의 열거형 상수에 여러 값을 지정할 수도 있다. 다만 그에 맞게 인스턴스 변수와 생성자 등을 새로 추가해줘야 한다.
