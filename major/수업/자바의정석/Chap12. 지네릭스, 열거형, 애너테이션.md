@@ -431,3 +431,56 @@ Direction d = new Direction(1); // 에러 열거형의 생성자는 외부에서
 ```
 
 필요하다면, 다음과 같이 하나의 열거형 상수에 여러 값을 지정할 수도 있다. 다만 그에 맞게 인스턴스 변수와 생성자 등을 새로 추가해줘야 한다.
+
+### 2.4 열거형의 이해
+만일 열거형 Direction이 다음과 같이 정의되어 있을 때,
+```java
+enum Direction { EAST, SOUTH, WEST, NORTH }
+```
+
+열거형 상수 하나하나가 Direction 객체이다.
+
+```java
+class Direction{
+    static final Direction EAST = new Direction("EAST");
+    static final Direction SOUTH = new Direction("SOUTH");
+    static final Direction WEST = new Direction("WEST");
+    static final Direction NORTH = new Direction("NORTH");
+
+    private String name;
+
+    private Direction(String name{
+        this.name = name;
+    }
+}
+```
+
+Direction 클래스의 static 상수 EAST, SOUTH, WEST , NORTH의 값은 객체의 주소이고, 이 값은 바뀌지 않는 값이므로 '=='로 비교가 가능한 것이다.
+
+모든 열거형은 추상클래스 Enum의 자손이므로, Enum을 흉내 내어 MyEnum을 작성하면 다음과 같다.
+```java
+abstract class MyEnum<T extends MyEnum<T>> implements Comparable<T> {
+    static int id = 0; // 객체에 붙일 일련번호
+
+    int ordinal;
+    String name = "";
+
+    public int ordinal() { return ordinal; }
+
+    MyEnum(String name) {
+        this.name = name;
+        ordinal = id++;
+    }
+
+    public int compareTo(T t) {
+        return ordinal - t.ordinal();
+    }
+}
+```
+
+## 3. 애너테이션(annotation)
+### 3.1 애너테이션
+주석처럼 프로그래밍 언어에 영향을 미치지 않으며, 유용한 정보를 제공하는 것.
+<div align="center">
+<img src="https://user-images.githubusercontent.com/97272787/222185014-51b729a4-e489-4f7d-9f6d-592f136930d1.png">
+</div>
