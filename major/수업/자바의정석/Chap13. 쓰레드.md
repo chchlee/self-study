@@ -170,3 +170,56 @@ join()도 sleep()처럼 interrupt()에 의해 대기상태에서 벗어날 수 �
 ### 9.2 wait()과 notify()
 동기화로 공유 데이터를 보호하는 것 까진 좋은데, 특정 쓰레드가 객체의 락을 가진 상태로 오랜 시간을 보내지 않도록 하는 것도 중요하다.
 이러한 상황을 개선하기 위해 고안된 것이 wait()과 notify()이다. 동기화된 임계영역의 코드를 수행하다가 작업을 더 이상 진행할 상황이 아니면, 일단 wait()을 호출하여 쓰레드가 락을 반납하고 기다리게 한다. 그러면 다른 쓰레드가 락을 얻어 해당 객체에 대한 작업을 수행할 수 있게 된다. 나중에 작업을 진행할 수 있는 상황이 되면 notify()를 호출해서, 작업을 중단했던 쓰레드가 다시 락을 얻어 작업을 수 행할 수 있게 한다.
+wait()이 호출되면, 실행 중이던 쓰레드는 해당 객체의 대기실(waiting pool)에서 통지를 기다린다. notify()가 호출되면, 해당 객체에 대기실에 있던 모든 쓰레드 중에서 임의의 쓰레드만 통지를 받는다. notifyAll()은 기다리고 있는 모든 쓰레드에게 통보를 하지만, 그래도 lock을 얻지 못하면 다시 lock을 기다리는 신세가 된다.
+
+```java
+wait(), notify(), notifyAll()
+- Object에 정의되어 있다.
+- 동기화 블록(synchronized블록)내에서만 사용할 수 있다.
+- 보다 효율적인 동기화를 가능하게 한다.
+```
+
+#### 기아 현상과 경쟁 상태
+지독히 운이 나쁘면 요리사 쓰레드는 계속 통지를 받지 못하고 오랫동안 기다리게 되는데, 이것을 '기아(starvation) 현상' 이라 한다. 이 현상을 막으려면, notify() 대신 notifyAll()을 사용해야 한다. 일단 모든 쓰레드에게 통지를 하면, 손님 쓰레드는 다시 waiting pool에 들어가더라도 요리사 쓰레드는 결국 lock을 얻어서 작업을 진행할 수 있기 때문이다.
+
+### 9.3 Lock과 Condition을 이용한 동기화
+동기화할 수 있는 방법은 synchronized블럭 외에도 'java.util.concurrent.locks' 패키지가 제공하는 lock 클래스들을 이용할 수 있는 방법이 있다.
+synchronized 블럭을 사용하면 자동으로 lock이 잠기고 풀리기 때문에 편리하긴 하지만 같은 메서드 내에서만 lock을 걸수 있는 제약이 불편하기도 하다. 그럴 때 lock 클래스를 사용한다.
+
+- ReentrantLock - 재진입이 가능한 lock, 가장 일반적인 배타 lock
+- ReentrantReadWriteLock - 읽기에는 공유적이고, 쓰기에는 배타적인 lock
+- StampedLock - ReentrantReadWriteLock에 낙관적인 lock의 기능을 추가
+
+ReentrantLock은 가장 일반적인 lock 이다. 'reentrant(재진입할 수 있는)'이라는 단어가 앞에 붙은 이유는, wait() & notify()에서 배운 것처럼, 특정 조건에서 lock을 풀고 나중에 다시 lock을 얻고 임계영역에 들어와서 이후의 작업을 수행할 수 있기 때문이다.
+ReentrantReadWriteLock은 이름에서 알 수 있듯이, 읽기를 위한 lock과 쓰기를 위한 lock을 제공한다. ReentrantLock은 배타적인 lock이라서 무조건 lock이 있어야만 임계 영역 코드를 수행할 수 있지만, ReentrantReadWriteLock은 읽기 lock이 걸려 있다면, 다른 쓰레드가 읽기 lock을 중복해서 걸고 읽기를 수행할 수 있다. 읽기는 내용을 변경하지 않으므로 동시에 여러 쓰레드가 읽어도 문제가 되지 않는다. 그러나 읽기 lock이 걸린 상태에서 쓰기 lock을 거는 것은 허용되지 않는다. 반대의 경우도 마찬가지이다. 읽기를 할때는 읽기 lock을 걸고, 쓰기 할 떄는 쓰기 lock을 거는 것 일뿐 lock을 거는 방법은 같다.
+StampedLock은 lock을 걸거나 해지할 때 스탬프'(long타입의 정수값)'을 사용하며, 읽기와 쓰기를 위한 lock외에 '낙관적 읽기lock(optimistic reading book)'이 추가된 것이다.
+읽기 lock이 걸려있으면, 쓰기 lock을 얻기 위해서는 읽기 lock이 풀릴 때까지 기다려야하는데 비해 '낙관적 읽기 lock'은 쓰기 lock에 의해 바로 풀린다. 그래서 낙관적 읽기에 실패하면, 읽기 lock을 얻어서 다시 읽어 와야 한다. 무조건 읽기 lock을 걸지 않고, 쓰기와 읽기가 충돌할 때만 쓰기가 끝난 후에 읽기 lock을 거는 것이다.
+
+#### ReentrantLock의 생성자
+```java
+ReentrantLock()
+ReentrantLock(boolean fair)
+```
+
+생성자의 매개변수를 true로 주면, lock이 풀렸을 때 가장 오래 기다린 쓰레드가 lock을 획득할 수 있게, 즉 공정(fair)하게 처리한다. 그러나 공정하게 처리하려면 어떤 쓰레드가 가장 오래 기다렸는지 확인하는 과정을 거칠 수 밖에 없으므로 성능은 떨어진다.
+```java
+void lock() - lock을 잠근다.
+void unlock() - lock을 해지한다.
+boolean isLocked() - Lock이 잠겼는지 확인한다.
+
+```
+
+```java
+synchronized(lock) {} 이
+lock.lock();
+lock.unlock(); 와 같다.
+```
+이외에도 tryLock()이라는 메서드가 있는데, 이 메서드는 lock()과 달리, 다른 쓰레드에 의해 lock이 걸려 있으면 lock을 얻으려고 기다리지 않는다. 또는 지정된 시간만큼만 기다린다. lock을 얻으면 true를 반환하고, 얻지 못하면 false를 반환한다.
+
+
+```java
+boolean tryLock()
+boolean tryLock(long timeout, TimeUnit unit) throws InterruptedException
+```
+
+lock()은 lock을 얻을 때 까지 쓰레드를 블락(block) 시키므로 쓰레드의 응답성이 나빠질 수 있다. 응답성이 중요한 경우, tryLock()을 이용해서 지정된 시간동안 lock을 얻지 못하면 다시 작업을 시도할 것인지 포기할 것인지를 사용자가 결정할 수 있게 하는 것이 좋다.
