@@ -223,3 +223,49 @@ boolean tryLock(long timeout, TimeUnit unit) throws InterruptedException
 ```
 
 lock()은 lock을 얻을 때 까지 쓰레드를 블락(block) 시키므로 쓰레드의 응답성이 나빠질 수 있다. 응답성이 중요한 경우, tryLock()을 이용해서 지정된 시간동안 lock을 얻지 못하면 다시 작업을 시도할 것인지 포기할 것인지를 사용자가 결정할 수 있게 하는 것이 좋다.
+
+#### ReentrantLock과 Condition
+앞서 wait() & notify() 예쩨에 요리사 쓰레드와 손님 쓰레드를 구분해서 통지하지 못한다는 단점을 기억할 것이다. Condition은 이 문제점을 해결하기 위한 것이다.
+wait() & notify()로 쓰레드의 종류를 구분하지 않고, 공유 객체의 waiting pool에 같이 몰아넣는 대신, 손님 쓰레드를 위한 Condition과 요리사 쓰레드를 위한 Condition을 만들어서 각각의 waiting pool에서 따로 기다리도록 하면 문제는 해결된다.
+
+Condition은 이미 생성된 lock으로부터 new Condition()을 호출해서 생성한다.
+
+```java
+private ReentrantLock lock = new ReentrantLock();
+private Condition forCook = new Condition();
+private Condition forCust = lock.newCondition();
+```
+
+|Object|Condition|
+|--|--|
+|void wait()|void await() </br> void awaitUninterruptibly()|
+|void wait(long timeout)|boolean await(long time, TimeUnit unit) </br> long awaitNanos(long nanosTimeout) </br> boolean awaitUntil(Date deadline)|
+|void notify()|void signal()|
+|void notifyAll()|void signalAll()|
+
+## 9.4 volatile
+<div align="center">
+<img src="https://user-images.githubusercontent.com/97272787/222624853-d0bcbf02-ebbc-4fad-8e94-d745f1fd3706.png">
+</div>
+
+코어는 메모리에서 읽어온 값을 캐시에 저장하고 캐시에서 값을 읽어서 작업한다. 다시 같은 값을 읽어올 때는 먼저 캐시에 있는지 확인하고 없을 때만 메모리에서 읽어온다.
+그러다보니 도중에 메모리에 저장된 변수의 값이 변경되었는데도 캐시에 저장된 값이 갱신되지 않아서 메모리에 저장된 값이 다른 경우가 발생한다. 그래서 변수 stopped의 값이 바뀌었는데도 쓰레드가 멈추지 않고 계속 실행되는 것이다.
+
+<div align="center">
+<img src="https://user-images.githubusercontent.com/97272787/222625204-c4d165e9-405b-4f84-96a2-5e74cb44c630.png">
+</div>
+
+그러나 위의 오른쪽과 같이 변수 앞에 volatile을 붙이면, 코어의 변수의 값을 읽어올 때 캐시가 아닌 메모리의 값을 읽어오기 떄문에 캐시와 메모리간의 값의 불일치가 해결된다.
+
+변수에 volatile을 붙이는 대신 synchronized블럭을 사용해도 같은 효과를 얻을 수 있다. 쓰레드가 synchronized블럭으로 들어갈 떄와 나올 때, 캐시와 메모리간의 동기화가 이루어지기 때문에 값의 불일치가 해소되기 때문이다.
+
+<div align="center">
+<img src="https://user-images.githubusercontent.com/97272787/222625219-11250cf4-d81e-41e9-a2df-4e3e6ee82a38.png">
+</div>
+
+## 9.5 fork & join 프레임워크
+이 프레임워크는 하나의 작업을 작은 단위로 나눠서 여러 쓰레드가 동시에 처리하는 것을 쉽게 만들어 준다.
+먼저 수행할 작업에 따라 RecursiveAction과 RecursiveTask, 두 클래스 중에서 하나를 상속받아 구현해야 한다.
+
+- RecursiveAction : 반환값이 없는 작업을 구현할 때 사용
+- RecursiveTask : 반환값이 있는 작업을 구현할 때 사용
