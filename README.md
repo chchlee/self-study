@@ -40,3 +40,7 @@
 
 - <p>16장. <a href="https://github.com/chchlee/self-study/blob/java/major/%EC%88%98%EC%97%85/%EC%9E%90%EB%B0%94%EC%9D%98%EC%A0%95%EC%84%9D/Chap16.%20%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%82%B9.md">네트워킹</a>
 </p>
+
+#### 📚(그림으로 배우는) HTTP & NETWORK Basic
+- <p>1장. <a href="https://github.com/chchlee/self-study/blob/java/major/%EC%88%98%EC%97%85/%EA%B7%B8%EB%A6%BC%EC%9C%BC%EB%A1%9C%EB%B0%B0%EC%9A%B0%EB%8A%94HTTP%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%ACBasic/1%EC%9E%A5.%EC%9B%B9%EA%B3%BC%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC%EC%97%90%EB%8C%80%ED%95%B4%EC%95%8C%EC%95%84%EB%B3%B4%EC%9E%90.md">웹과 네트워크에 대해 간단히 알아보자</a>
+</p>
