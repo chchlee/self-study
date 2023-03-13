@@ -165,7 +165,7 @@ Queue의 메서드
 |메서드|설명|
 |--|--|
 |boolean add(Object o)|지정된 객체를 Queue에 추가한다. 성공하면 true를 반환.|
-|Object remove()|Queuedㅔ서 객체를 꺼내 반환.|
+|Object remove()|Queue에서 객체를 꺼내 반환.|
 |Object element()|삭제없이 요소를 읽어온다.|
 |boolean offer(Object o)|Queue에 객체를 저장. 성공하면 true. 실패하면 false반환|
 |Object poll()|Queue에서 객체를 꺼내서 반환. 비어있으면 null을 반환|
@@ -193,6 +193,11 @@ Deque는 스택과 큐를 합쳐놓은 것과 같으며 스택으로 사용할 �
 ### 1.5 Iterator, ListIterator, Enumeration
 Iterator, ListIterator, Enumeration은 모두 컬렉션에 저장된 요소를 접근하는데 사용되는 인터페이스이다. Enumeration은 Iterator의 구버전이며, ListIterator는 Iterator의 기능을 향상 시킨 것이다.
 
+
+#### Iterable
+- Iterable 인터페이스는 for-each 반복문의 대상이 될 수 있는 타입의 추상적 동작을 정의
+- Iterator() 메소드를 통해 Iterator 타입 객체를 반환
+- forEach 메소드와 Spiltor() Default 메소드를 정의
 #### Iterator
 컬렉션 프레임워크에서는 컬렉션에 저장된 요소들을 읽어오는 방법을 표준화하였다. 컬렉션에 저장된 각 요소에 접근하는 기능을 가진 Iterator 인터페이스를 정의하고, Colleciton 인터페이스에는 Iterator를 반환하는 iterator()를 정의하고 있다.
 

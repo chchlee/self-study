@@ -1,7 +1,7 @@
 ## 1. 지네릭스(Generics)
-cla
+
 ### 1.1 지네릭스란?
-지네릭스는 다양한 타입의 객체들을 다루는 메서드나 컬렉션 클래스에 컴파일시 타입 체크(type-time check)를 해주는 기능이다. 객체의 타입을 컴파일 시에 체크하기 때문에 객체의 타입 안정성을 높이고 형변환의 번거로움이 줄어든다.
+지네릭스는 다양한 타입의 객체들을 다루는 메서드나 컬렉션 클래스 등에 컴파일시 타입 체크(type-time check)를 해주는 기능이다. 객체의 타입을 컴파일 시에 체크하기 때문에 객체의 타입 안정성을 높이고 형변환의 번거로움이 줄어든다.
 타입 안정성을 높인다는 것은 의도하지 않은 타입의 객체가 저장되는 것을 막고, 저장된 객체를 꺼내올 때 원래의 타입과 다른 타입으로 형변환되어 발생할 수 있는 오류를 줄여준 다는 뜻이다.
 예를 들어, ArrayList와 같은 컬렉션 클래스는 다양한 종류의 객체를 담을 수 있긴 하지만 보통 한 종류의 객체를 담는 경우가 더 많다. 그런데도 꺼낼 때 마다 타입 체크를 하는 것은 불편할 수 밖에 없다. 게다가 원하지 않은 종류의 객체가 포함되는 것을 막을 수 없다는 것을 막을 방법이 없다는 것도 문제다. 이러한 문제를 지네릭스가 해결해 준다.
 
@@ -63,7 +63,7 @@ Box<Apple> appleBox = new Box<Apple>();
 Box<Grape> grapeBox = new Box<Grape>();
 ```
 
-그러나 모든 객체에 대해 동일하게 동작해야하는 static 멤버에 타입 변수 T를 사용할 수는 없다. T는 인스턴스 변수로 간주되기 때문이다. staic 변수는 인스턴스변수를 참조할 수 없다.
+그러나 모든 객체에 대해 동일하게 동작해야하는 static 멤버에 타입 변수 T를 사용할 수는 없다. T는 인스턴스 변수로 간주되기 때문이다. static 변수는 인스턴스변수를 참조할 수 없다.
 ```java
 class Box<T>{
     static T item; // 에러
@@ -339,7 +339,7 @@ class Card{
 ```java
 class Card {
     enum Kind { CLOVER, HEART, DIAMOND, SPADE }
-    enum VALUE { TWO, THREE, FOUR }
+    enum Value { TWO, THREE, FOUR }
 
     final Kind kind; // 타입이 int가 아닌 Kind임에 유의
     final Value value;
@@ -371,7 +371,7 @@ class Unit {
 }
 ```
 
-열거형의 상수간의 비교에는 '=='를 사용할 수 있다. equals()가 아닌 '=='로 비교가 가능하다는 것은 그만큼 빠른 성능을 제공한다는 얘기다. 그러나 '<' , '>' 와 같은 비교연산자는 사용할 수 없고 compareTo()는 사용가능하다.
+열거형의 상수간의 비교에는 `==`를 사용할 수 있다. equals()가 아닌 `==`로 비교가 가능하다는 것은 그만큼 빠른 성능을 제공한다는 얘기다. 그러나 `<` , `>` 와 같은 비교연산자는 사용할 수 없고 compareTo()는 사용가능하다.
 
 ```java
 if(dir==Direction.EAST) {
@@ -421,7 +421,7 @@ enum Direction {
     Direction(int value) { this.value = value; }
 
     public int getValue() { return value; }
-    }
+}
 ```
 
 열거형의 인스턴스 변수는 반드시 final 이어야 한다는 제약은 없지만, value는 열거형 상수의 값을 저장하기 위한 것이므로 final을 붙였다.
