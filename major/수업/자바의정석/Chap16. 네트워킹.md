@@ -1,8 +1,11 @@
+
 ## 1. 네트워킹(Networking)
+
 네트워킹이란 두 대 이상의 컴퓨터를 케이블로 연결하여 네트워크를 구성하는 것을 말한다.
-자바에서 제공하는 java.net 패키지를 사용하면 이러한 네트워크 어플리케이션의 데이터 통신을 쉽게 작성할 수 있으며, 간단한 네트워크 어플리케이션은 단 몇 줄의 자바코드 만으로 작성이 가능하다.
+자바에서 제공하는 `java.net` 패키지를 사용하면 이러한 네트워크 어플리케이션의 데이터 통신을 쉽게 작성할 수 있으며, 간단한 네트워크 어플리케이션은 단 몇 줄의 자바코드 만으로 작성이 가능하다.
 
 ### 1.1 클라이언트/서버(client/server)
+
 - 서버(server) : 서비스를 제공하는 컴퓨터(service provider)
 - 클라이언트(client) : 서비스를 사용하는 컴퓨터(service user)
 
@@ -25,6 +28,8 @@ IP주소는 다시 네트워크주소와 호스트주소로 나눌 수 있는데
 
 #### 서브넷 마스크란?
 클래스리스 기반 IP 주소에서 네트워크 주소와 호스트 주소를 구분하기 위한 구분자.
+
+##### 클래스리스 기반 IP 주소 : 서브넷 마스크를 포함해서 네트워크 정보를 전달하는 IP 주소
 
 - IP주소와 서브넷 마스크를 2진수로 표현하면 다음과 같다.
 <div align="center">
@@ -61,7 +66,7 @@ URL은 인터넷에 존재하는 여러 서버들이 제공하는 자원에 접�
 
 - URL객체를 생성하는 방법은 다음과 같다.
 ```java
-URL url = new LUR("http://www.codechobo.com/sample/hello.html");
+URL url = new URL("http://www.codechobo.com/sample/hello.html");
 URL url = new URL("www.codechobo.com", "/sample/hello.html");
 URL url = new URL("http", "www.codechobo.com", 80, "/sample/hello.html");
 ```

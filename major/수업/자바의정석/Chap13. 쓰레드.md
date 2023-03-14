@@ -195,7 +195,7 @@ wait(), notify(), notifyAll()
 동기화할 수 있는 방법은 synchronized블럭 외에도 'java.util.concurrent.locks' 패키지가 제공하는 lock 클래스들을 이용할 수 있는 방법이 있다.
 synchronized 블럭을 사용하면 자동으로 lock이 잠기고 풀리기 때문에 편리하긴 하지만 같은 메서드 내에서만 lock을 걸수 있는 제약이 불편하기도 하다. 그럴 때 lock 클래스를 사용한다.
 
-- ReentrantLock - 재진입이 가능한 lock, 가장 일반적인 배타 lock
+- ReentrantLock - 재진입이 가능한 lock, 가장 일반적인 배타 lock(이기적인)
 - ReentrantReadWriteLock - 읽기에는 공유적이고, 쓰기에는 배타적인 lock
 - StampedLock - ReentrantReadWriteLock에 낙관적인 lock의 기능을 추가
 
