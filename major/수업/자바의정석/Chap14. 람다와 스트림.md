@@ -133,6 +133,11 @@ List<String> list = Arrays.asList("aaa", "bbb", "ccc", "ddd", "eee");
 Collections.sort(list, (s1, s2) -> s2.compareTo(s1));
 ```
 
+##### 내가 궁금했던 점
+
+- 함수형 인터페이스는 왜 쓰는 것일까?
+    - 람다 표현식을 이용해 개발자에게 가시성이 좋은 언어를 작성할 수 있기 때문이다.
+
 #### 함수형 인터페이스 타입의 매개변수와 반환 타입
 
 함수형 인터페이스 MyFunction이 아래와 같이 정의되어 있을 때
@@ -188,7 +193,7 @@ Object obj = (Object) (() -> {});
 
 ### 1.4 java.util.function 패키지
 
-대부분의 메서드는 타입이 비슷하다. 매개변수가 없거나 한 개 또는 두 개, 반환 값은 없거나 한 개. 게다가 지네릭 메서드로 정의하면 매개변수나 반환 타입이 달라도 문제가 되지 않는다.
+대부분의 메서드는 타입이 비슷하다. 그리고 매개변수가 없거나 한 개 또는 두 개, 반환 값은 없거나 한 개. 게다가 지네릭 메서드로 정의하면 매개변수나 반환 타입이 달라도 문제가 되지 않는다.
 그래서 `java.util.function` 패키지에 일반적으로 자주 쓰이는 형식의 메서드를 함수형 인터페이스로 미리 정의해 놓았다. 매번 새로운 함수형 인터페이스를 정의하지 말고, 가능하면 이 패키지의 인터페이스를 활용하는 것이 좋다.
 
 <div align="center">
@@ -217,7 +222,7 @@ if(isEmptyStr.test(s))
 </div>
 
 만약 두 개 이상의 매개변수를 갖는 함수형 인터페이스가 필요하다면 직접 만들어서 써야한다.
-만일 3개의 매개변수를 갖는 함수형 인터페이스를 선언한담녀 다음과 같을 것이다.
+만일 3개의 매개변수를 갖는 함수형 인터페이스를 선언한다면 다음과 같을 것이다.
 
 ```java
 @FunctionalInterface
@@ -297,7 +302,7 @@ Function<String, String> f = Function.identity(); // 위의 문장과 동일
 
 #### Predicate의 결합
 
-여러 조건식을 논리 연산자인 &&, ||, ! 으로 연결해서 하나의 식을 구성할 수 있는 것처럼, 여러 Predicate를 and(), or(), negate()로 연결해서 하나의 새로운 Predicate로 결합할 수 있다.
+여러 조건식을 논리 연산자인 `&&`, `||`, `!` 으로 연결해서 하나의 식을 구성할 수 있는 것처럼, 여러 Predicate를 and(), or(), negate()로 연결해서 하나의 새로운 Predicate로 결합할 수 있다.
 
 ```java
 Predicate<Integer> p = i -> i < 100;
@@ -312,7 +317,7 @@ Predicate<Integer> all = notP.and(q.or(r));
 
 ### 1.6 메서드 참조
 
-람다식이 하나의 메서드만 호출하는 경우에는 '메서드 참조(method reference)'라는 방법으로 람다식을 간단하게 호출 할 수 있다.
+람다식이 **하나의 메서드만 호출하는 경우**에는 '메서드 참조(method reference)'라는 방법으로 람다식을 간단하게 호출 할 수 있다.
 
 ```java
 Function<String, String> f = (String s) -> Integer.parseInt(s);
@@ -350,7 +355,7 @@ BiFunction<String, String, Boolean> f = (s1, s2) -> s1.equals(s2);
 BiFunction<String, String, Boolean> f = String::equals;
 ```
 
-Boolean을 반환하는 equals라는 이름의 메섣드는 다른 클래스에도 존재할 수 있기 때문에 equals 앞에 클래스 이름은 반드시 필요하다.
+Boolean을 반환하는 equals라는 이름의 메서드는 다른 클래스에도 존재할 수 있기 때문에 equals 앞에 클래스 이름은 반드시 필요하다.
 메서드 참조를 사용할 수 있는 한 가지가 더 있는데, 이미 생성된 객체의 메서드를 람다식에서 사용한 경우에는 클래스 이름 대신 그 객체의 참조변수를 적어주면 된다.
 
 ```java
@@ -416,11 +421,10 @@ strStream2.sorted().forEach(System.out::println);
 
 ```java
 Arrays.sort(strArr);
-Collections.sort(strList);
-
 for(String str : strArr)
     System.out.println(str);
 
+Collections.sort(strList);
 for(String str : strList)
     Systme.out.println(str);
 ```
@@ -546,7 +550,6 @@ IntStream IntStream.of(int...values)
 IntStream IntStream.of(int[])
 IntStream Arrays.stream(int[])
 IntStream Arrays.stream(int[] array, int startInclusive, int endInclusive)
-
 ```
 
 #### 특정 범위의 정수
@@ -649,3 +652,94 @@ strStream.sorted().forEach(System.out::print); // CC
 <div align="center">
 <img src="https://user-images.githubusercontent.com/97272787/225164359-581b1400-0045-4d6e-bbb7-20880ab897cc.png">
 </div>
+
+비교대상이 기본형인 경우, comparing()대신 아래의 메소드를 사용하면 오토박싱이 없어 더 효율적이다.
+
+```java
+comparingInt(ToIntFunction<T> keyExtractor)
+comparingLong(ToIntFunction<T> keyExtractor)
+comparingDouble(ToIntFunction<T> keyExtractor)
+```
+
+정렬 조건을 추가할 때는 thenComparing()을 사용한다.
+
+```java
+thenComparing(Comparator<T> other)
+thenComparing(Function<T, U> keyExtractor)
+thenComparing(Function<T, U> keyExtractor, Comparator<U> keyComp)
+```
+
+예를 들어, 학생스트림을 반, 성적 순, 그리고 이름 순으로 정렬하면 아래와 같다.
+
+```java
+studentStream.sorted(Comparator.comparing(Student::getBan)
+             .thenComparing(Student::getTotalScore)
+             .thenComparing(Student::getBan))
+             .forEach(System.out::println);
+```
+
+#### 변환 - map()
+
+스트림의 요소에 저장된 값 중에서 원하는 필드만 뽑아내거나 특정 형태로 변환해야 할 때가 있다. 이 때 사용하는 게 바로 map()이다. map()은 매개변수로 T타입을 R타입으로 반환해야 하는 함수를 사용한다.
+
+```java
+Stream<R> map(Function<? super T, ? extends R> mapper)
+```
+
+예를 들어, File 스트림에서 파일의 이름만 뽑아서 출력하고 싶을 때, 아래와 같이 map()을 이용하면 File 객체에서 파일의 이름(String)만 뽑아낼 수 있다.
+
+<div align="center">
+<img src="https://user-images.githubusercontent.com/97272787/225461658-0e13bd27-7845-439b-887b-9b8f62ca3c03.png">
+</div>
+
+map역시 중간 연산이므로, 연산결과는 String을 요소로 하는 스트림이다. map()으로 `Stream<File>`을 `Stream<String>`으로  변환했다고 할 수 있다.
+
+```java
+
+fileStream.map(File::getName)
+          .filter(s -> s.indexOf(.) != -1)
+          .map(s -> s.substring(s.indexOf('.')+1))
+          .map(String::toUpperCase)
+          .distinct()
+          .forEach(System.out::println);
+```
+
+#### 조회 - peek()
+
+연산과 연산 사이가 올바르게 처리되었는지 확인하고 싶다면, peek()을 사용하자. forEach()와 달리 스트림의 요소를 소모하지 않으므로 연산과 연산 사이에 여러번 끼워 넣어도 문제가 되질 않는다.
+
+```java
+fileStream.map(File::getName)
+          .filter(s -> s.indexOf(.) != -1)
+          .peek(s -> System.out.printf("fileName = %f%n", s))
+          .map(s -> s.substring(s.indexOf('.')+1))
+          .peek(s -> System.out.printf("extension = %s%n", s))
+          .forEach(System.out::println);
+```
+
+#### mapToInt(), mapToLong(), mapToDouble()
+
+map()은 연산의 결과로 `Stream<T>` 타입의 스트림을 반환하는데, 스트림의 요소를 숫자로 변환하는 경우 IntStream과 같은 스트림으로 변환하는 것이 유용할 수 있다. Stream<T> 타입의 스트림을 기본형 스트림으로 변환할 때 사용하는 것이 아래의 메서드들이다.
+
+```java
+DoubleStream mapToDouble(ToDoubleFunction<? super T> mapper)
+IntStream mapToInt(ToIntFunction<? super T> mapper)
+LongStream mapToLong(ToLongFunction<? super T> mapper)
+```
+
+count만 지원하는 `Stream<T>` 와는 달리 IntStream와 같은 기본형 스트림은 아래와 같이 숫자를 다루는데 편리한 메서드들을 제공한다.
+
+<div align="center">
+<img src="https://user-images.githubusercontent.com/97272787/225464101-c66bb6f9-bc44-4ce5-ae84-14fdeb77cf91.png">
+</div>
+
+
+스트림의 요소가 하나도 없을 때, sum()은 0을 반환하면 그만이지만, 다른 메서드들은 단순히 0을 반환할 수 없다. 여러 요소들을 합한 평균이 0일수도 있기 때문이다. 이를 구분하기 위해 단순히 double 값을 반환하는 대신, double타입의 값을 내부적으로 가지고 있는 OptionalDouble을 반환하는 것이다. 그리고 이 메서드들은 최종 연산이기 때문에 호출 후에 스트림이 닫힌다는 것을 주의해야 한다.
+
+그래서 sum과 average같은 연산을 같이 호출해야 할 때, summaryStatics라는 메서드가 제공된다.
+
+<div align="center">
+<img src="https://user-images.githubusercontent.com/97272787/225464585-f5de81b1-0e77-4fc8-b5ad-490c2535a4e6.png">
+</div>
+
+####

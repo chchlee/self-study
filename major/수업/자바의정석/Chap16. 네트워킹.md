@@ -22,11 +22,13 @@
 |- 안정적인 서비스 제공이 가능 </br> - 공유 데이터의 관리와 보안이 용이 </br> - 서버 구축비용과 관리비용이 든다.|- 서버구축 및 운용비용을 절감할 수 있다. </br> - 자원의 활용을 극대화할 수 있다. </br> - 자원의 관리가 어렵다. </br> - 보안이 취약하다.|
 
 ### 1.2 IP주소
+
 IP주소는 컴퓨터(host)를 구별하는데 사용되는 고유한 값으로 인터넷에 연결된 모든 컴퓨터는 IP주소를 갖는다. IP주소는 4byte(32bit)의 정수로 이루어져 있으며, 4개의 정수가 마침표로 구분자로 'a.b.c.d'와 같은 형식으로 표현된다. a,b,c,d 는 부호없는 1byte 값, 즉 0~255사이의 정수이다.
 
 IP주소는 다시 네트워크주소와 호스트주소로 나눌 수 있는데, 32bit(4byte)의 IP주소 중에서 네트워크주소와 호스트주소가 각각 몇 bit를 차지하는 지는 네트워크를 어떻게 구성하였는지에 따라 달라진다. 그리고 서로 다른 두 호스트의 IP주소의 네트워크주소가 같다는 것은 두 호스트가 같은 네트워크에 포함되어 있다는 것을 의미한다.
 
 #### 서브넷 마스크란?
+
 클래스리스 기반 IP 주소에서 네트워크 주소와 호스트 주소를 구분하기 위한 구분자.
 
 ##### 클래스리스 기반 IP 주소 : 서브넷 마스크를 포함해서 네트워크 정보를 전달하는 IP 주소
@@ -47,12 +49,14 @@ IP주소에서 네트워크주소가 차지하는 자리수가 많을수록 호�
 호스트 주소가 0인 것은 네트워크 자신을 나타내고, 255는 브로트캐스트 주소로 사용되기 때문에 실제로 네트워크에 포함 가능한 호스트 개수는 254개이다.
 
 ### 1.3 InetAddress
+
 자바에서는 IP주소를 다루기 위한 클래스로 InetAddress를 제공한다.
 <div align="center">
 <img src="https://user-images.githubusercontent.com/97272787/223484561-e629b4cf-8713-400e-be7f-56948bcceb11.png">
 </div>
 
 ### 1.4 URL(Uniform Resource Locator)
+
 URL은 인터넷에 존재하는 여러 서버들이 제공하는 자원에 접근할 수 있는 주소를 표현하기 위한 것으로 '프로토콜://호스트명:포트번호/경로명/파일명?쿼리스트링#참조'의 형태로 이루어져 있다.
 
 <div align="center">
@@ -60,11 +64,13 @@ URL은 인터넷에 존재하는 여러 서버들이 제공하는 자원에 접�
 </div>
 
 - URL을 다루기 위한 메소드는 다음과 같다.
+
 <div align="center">
 <img src="https://user-images.githubusercontent.com/97272787/223485363-c7c981a5-99ac-4db0-9b1d-380234c973c7.png">
 </div>
 
 - URL객체를 생성하는 방법은 다음과 같다.
+
 ```java
 URL url = new URL("http://www.codechobo.com/sample/hello.html");
 URL url = new URL("www.codechobo.com", "/sample/hello.html");
@@ -84,10 +90,12 @@ URLConnection은 어플리케이션과 URL간의 통신연결을 나타내는 �
 </div>
 
 ## 2. 소켓 프로그래밍
+
 소켓 프로그래밍은 소켓을 이용한 통신 프로그래밍을 뜻하는데, 소켓(socket)이란 프로세스간의 통신에 상요되는 양쪽 끝단을 의미한다. 서로 멀리 떨어진 두 사람이 통신하기 위해서 전화기가 필요한 것처럼, 프로세스간의 통신을 위해서는 그 무언가가 필요하고 그것이 바로 소켓이다.
 자바에서는 java.net 패키지를 통해서 소켓 프로그래밍을 지원한다.
 
 ### 2.1 TCP와 UDP
+
 <div align="center">
 <img src="https://user-images.githubusercontent.com/97272787/223491009-dcd88a4b-7de5-4fd4-acd4-2df2ee2d1154.png">
 </div>
@@ -119,6 +127,7 @@ TCP 소켓 프로그래밍은 클라이언트와 서버간의 일대일 통신�
 </div>
 
 ### 2.3 UDP 소켓 프로그래밍
+
 TCP소켓 프로그래밍에서는 Socket과 ServerSocket을 사용하지만, UDP 소켓 프로그래밍에서는 DatagramSocket과 DatagramPacket을 사용한다.
 UDP는 연결지향적인 프로토콜이 아니기 때문에 ServerSocket이 필요하지 않는다.
 UDP통신에서 사용하는 소켓은 DatagramSocket이며 데이터를 DatagramPacket에 담아서 전송한다.
