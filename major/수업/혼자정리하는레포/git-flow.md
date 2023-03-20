@@ -238,7 +238,22 @@ Merge Pull Request에도 3가지 방법이 존재한다.
     - 커밋 a,b,c의 관계를 그대로 유지한 채 메인 브랜치에 그대로 추가한다. 커밋 a는 부모로 커밋 e를 가진다. Rebase and Merge 작업 후에는 작업했던 브랜치의 a,b,c 커밋들은 합병 후의 메인 브랜치의 init, d,e,a,b,c 커밋들과 연관 관계를 가지지 않는다.
 
 
--
+`develop-feature` 브랜치 간의 합병에는 `Squash and Merge`가 유용하다. 지저분한 feature의 히스토리를 모두 묶어 완전한 새로운 커밋으로 develop 브랜치에 추가하여 develop 브랜치에 독자적으로 관리할 수 있기 때문이다. 일반적으로 합병 후에 feature 브랜치를 삭제하는 경우, feature 브랜치의 커밋 히스토리를 모두 develop 브랜치에 직접 연관 지어 남길 필요가 없다.
+
+`master-develop` 브랜치간의 합병에는 `Rebase and Merge`가 유용하다. develop의 내용을 master에 추가할 때에는 별도의 새로운 커밋을 생성할 이유가 없기 때문이다.
+
+`hotfix-develop`, `hotfix-master` 브랜치 간의 합병은 `merge` 또는 `Squash and Merge` 모두 유용하다. hotfix 브랜치 작업의 히스토리가 모두 남아야하는 경우 Merge를, 필요 없는 경우 Squash and Merge를 사용한다.
+
+
+### 5. Commit 수정
+
+
+위와 동일한 과정으로 `feature/add-file4` 브랜치를 생성하여 파일을 생성해준다. 그리고 커밋을 해주는데, 만약 커밋 메시지를 잘못 입력 했을 경우 IntelliJ 그래프에서 'Undo Commit'항목을 선택하면 된다.
+
+<div align="center">
+<img src="https://user-images.githubusercontent.com/97272787/226182891-7e615062-8bdf-49b8-86b7-6244f179f14e.png">
+</div>
+
 ____
 
 #### 출처
