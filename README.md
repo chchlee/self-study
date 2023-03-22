@@ -75,36 +75,21 @@
 - <p>11장. <a href="https://github.com/chchlee/self-study/blob/java/major/%EC%88%98%EC%97%85/%EA%B7%B8%EB%A6%BC%EC%9C%BC%EB%A1%9C%EB%B0%B0%EC%9A%B0%EB%8A%94HTTP%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%ACBasic/11%EC%9E%A5.%EC%9B%B9%EA%B3%B5%EA%B2%A9%EA%B8%B0%EC%88%A0.md">웹 공격 기술</a>
 </p>
 
-#### 📚(그림으로 배우는) HTTP & NETWORK Basic
-- <p>1장. <a href="https://github.com/chchlee/self-study/blob/java/major/%EC%88%98%EC%97%85/%EA%B7%B8%EB%A6%BC%EC%9C%BC%EB%A1%9C%EB%B0%B0%EC%9A%B0%EB%8A%94HTTP%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%ACBasic/1%EC%9E%A5.%EC%9B%B9%EA%B3%BC%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC%EC%97%90%EB%8C%80%ED%95%B4%EC%95%8C%EC%95%84%EB%B3%B4%EC%9E%90.md">웹과 네트워크에 대해 간단히 알아보자</a>
+#### 📚 SQL 첫걸음
+- <p>1장. <a href="https://github.com/chchlee/self-study/blob/java/major/%EC%88%98%EC%97%85/SQL%EC%B2%AB%EA%B1%B8%EC%9D%8C/1%EC%9E%A5.md">데이터베이스와 SQL</a>
 </p>
 
-- <p>2장. <a href="https://github.com/chchlee/self-study/blob/java/major/%EC%88%98%EC%97%85/%EA%B7%B8%EB%A6%BC%EC%9C%BC%EB%A1%9C%EB%B0%B0%EC%9A%B0%EB%8A%94HTTP%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%ACBasic/2%EC%9E%A5.%EA%B0%84%EB%8B%A8%ED%95%9C%ED%94%84%EB%A1%9C%ED%86%A0%EC%BD%9CHTTP.md">간단한 프로토콜 HTTP</a>
+- <p>2-3장. <a href="https://github.com/chchlee/self-study/blob/java/major/%EC%88%98%EC%97%85/SQL%EC%B2%AB%EA%B1%B8%EC%9D%8C/2%EC%9E%A5-3%EC%9E%A5.md">테이블에서 데이터 검색 / 정렬과 연산</a>
 </p>
 
-- <p>3장. <a href="https://github.com/chchlee/self-study/blob/java/major/%EC%88%98%EC%97%85/%EA%B7%B8%EB%A6%BC%EC%9C%BC%EB%A1%9C%EB%B0%B0%EC%9A%B0%EB%8A%94HTTP%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%ACBasic/3%EC%9E%A5.HTTP%20%EC%A0%95%EB%B3%B4%EB%8A%94%20HTTP%20%EB%A9%94%EC%8B%9C%EC%A7%80%EC%97%90%20%EC%9E%88%EB%8B%A4..md">HTTP 정보는 HTTP 메시지에 있다.</a>
+- <p>4-5장. <a href="https://github.com/chchlee/self-study/blob/java/major/%EC%88%98%EC%97%85/SQL%EC%B2%AB%EA%B1%B8%EC%9D%8C/4%EC%9E%A5-5%EC%9E%A5.md">데이터의 추가, 삭제, 갱신 / 집계와 서브쿼리</a>
 </p>
 
-- <p>4장. <a href="https://github.com/chchlee/self-study/blob/java/major/%EC%88%98%EC%97%85/%EA%B7%B8%EB%A6%BC%EC%9C%BC%EB%A1%9C%EB%B0%B0%EC%9A%B0%EB%8A%94HTTP%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%ACBasic/4%EC%9E%A5.%EA%B2%B0%EA%B3%BC%EB%A5%BC%EC%A0%84%EB%8B%AC%ED%95%98%EB%8A%94HTTP%EC%83%81%ED%83%9C%EC%BD%94%EB%93%9C.md">결과를 전달하는 HTTP 상태 코드</a>
+- <p>6장. <a href="https://github.com/chchlee/self-study/blob/java/major/%EC%88%98%EC%97%85/SQL%EC%B2%AB%EA%B1%B8%EC%9D%8C/6%EC%9E%A5.md">데이터베이스 객체 작성과 삭제</a>
 </p>
 
-- <p>5장. <a href="https://github.com/chchlee/self-study/blob/java/major/%EC%88%98%EC%97%85/%EA%B7%B8%EB%A6%BC%EC%9C%BC%EB%A1%9C%EB%B0%B0%EC%9A%B0%EB%8A%94HTTP%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%ACBasic/5%EC%9E%A5.HTTP%EC%99%80%EC%97%B0%EA%B3%84%ED%95%98%EB%8A%94%EC%9B%B9%EC%84%9C%EB%B2%84.md">HTTP와 연계하는 웹 서버</a>
+- <p>7장. <a href="https://github.com/chchlee/self-study/blob/java/major/%EC%88%98%EC%97%85/SQL%EC%B2%AB%EA%B1%B8%EC%9D%8C/7%EC%9E%A5.md">복수의 테이블 다루기</a>
 </p>
 
-- <p>6장. <a href="https://github.com/chchlee/self-study/blob/java/major/%EC%88%98%EC%97%85/%EA%B7%B8%EB%A6%BC%EC%9C%BC%EB%A1%9C%EB%B0%B0%EC%9A%B0%EB%8A%94HTTP%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%ACBasic/6%EC%9E%A5.HTTP%ED%97%A4%EB%8D%94.md">HTTP 헤더</a>
-</p>
-
-- <p>7장. <a href="https://github.com/chchlee/self-study/blob/java/major/%EC%88%98%EC%97%85/%EA%B7%B8%EB%A6%BC%EC%9C%BC%EB%A1%9C%EB%B0%B0%EC%9A%B0%EB%8A%94HTTP%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%ACBasic/7%EC%9E%A5.%EC%9B%B9%EC%9D%84%EC%95%88%EC%A0%84%ED%95%98%EA%B2%8C%ED%95%98%EB%8A%94https.md">웹을 안전하게 하는 HTTPS</a>
-</p>
-
-- <p>8장. <a href="https://github.com/chchlee/self-study/blob/java/major/%EC%88%98%EC%97%85/%EA%B7%B8%EB%A6%BC%EC%9C%BC%EB%A1%9C%EB%B0%B0%EC%9A%B0%EB%8A%94HTTP%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%ACBasic/8%EC%9E%A5.%EB%88%84%EA%B0%80%EC%95%A1%EC%84%B8%EC%8A%A4%ED%95%98%EA%B3%A0%EC%9E%88%EB%8A%94%EC%A7%80%EB%A5%BC%ED%99%95%EC%9D%B8.md">누가 액세스하고 있는지를 확인하는 인증</a>
-</p>
-
-- <p>9장. <a href="https://github.com/chchlee/self-study/blob/java/major/%EC%88%98%EC%97%85/%EA%B7%B8%EB%A6%BC%EC%9C%BC%EB%A1%9C%EB%B0%B0%EC%9A%B0%EB%8A%94HTTP%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%ACBasic/9%EC%9E%A5.HTTP%EC%97%90%EA%B8%B0%EB%8A%A5%EC%9D%84%EC%B6%94%EA%B0%80%ED%95%9C%ED%94%84%EB%A1%9C%ED%86%A0%EC%BD%9C.md">HTTP에 기능을 추가한 프로토콜</a>
-</p>
-
-- <p>10장. <a href="https://github.com/chchlee/self-study/blob/java/major/%EC%88%98%EC%97%85/%EA%B7%B8%EB%A6%BC%EC%9C%BC%EB%A1%9C%EB%B0%B0%EC%9A%B0%EB%8A%94HTTP%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%ACBasic/10%EC%9E%A5.%EC%9B%B9%EC%BD%98%ED%85%90%EC%B8%A0%EC%97%90%EC%84%9C%EC%82%AC%EC%9A%A9%ED%95%98%EB%8A%94%EA%B8%B0%EC%88%A0.md">웹 콘텐츠에서 사용하는 기술</a>
-</p>
-
-- <p>11장. <a href="https://github.com/chchlee/self-study/blob/java/major/%EC%88%98%EC%97%85/%EA%B7%B8%EB%A6%BC%EC%9C%BC%EB%A1%9C%EB%B0%B0%EC%9A%B0%EB%8A%94HTTP%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%ACBasic/11%EC%9E%A5.%EC%9B%B9%EA%B3%B5%EA%B2%A9%EA%B8%B0%EC%88%A0.md">웹 공격 기술</a>
+- <p>8장. <a href="https://github.com/chchlee/self-study/blob/java/major/%EC%88%98%EC%97%85/SQL%EC%B2%AB%EA%B1%B8%EC%9D%8C/8%EC%9E%A5.md">데이터베이스 설계</a>
 </p>
