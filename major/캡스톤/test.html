@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChatGPT-like Web App</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        header {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            background-color: #333;
+            padding: 10px;
+        }
+
+        header button {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: 10px;
+            margin: 5px;
+            cursor: pointer;
+        }
+
+        .container {
+            display: flex;
+        }
+
+        .sidebar {
+            width: 200px;
+            background-color: #f1f1f1;
+            padding: 10px;
+            height: 100vh;
+        }
+
+        .chat-container {
+            flex: 1;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <button>마이페이지</button>
+        <button>로그인</button>
+    </header>
+    <div class="container">
+        <div class="sidebar">
+            <button>New Chat</button>
+        </div>
+        <div class="chat-container">
+            <!-- 여기에 채팅 UI를 구현하십시오. -->
+        </div>
+    </div>
+</body>
+</html>

@@ -142,7 +142,7 @@ $ git clone url
 <img src="https://user-images.githubusercontent.com/97272787/226176999-8f435182-18c2-4383-aa74-232bf3b973dd.png">
 </div>
 
-마찬가지로 `feature/add-file1` 브랜치로 `Finish Feature`로 해당 브랜치를 삭제함과 동시에 `develop` 브랜치로 merge 해준다.
+마찬가지로 `feature/add-file1` 브랜치도 `Finish Feature`로 해당 브랜치를 삭제함과 동시에 `develop` 브랜치로 merge 해준다.
 
 <div algin="center">
 <img src="https://user-images.githubusercontent.com/97272787/226177112-0b424bca-3fa1-44b1-8e90-0c1f4ae433cd.png">
