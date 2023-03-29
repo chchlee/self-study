@@ -24,6 +24,22 @@
   - 템플릿 메서드 패턴 : `자판기` 문제를 리팩토링하자.
   - 비지터 패턴 : `Syntax Color Tokenizer`를 다시 풀어보자.
 
+#### 어느상황에 사용할까?
+
+- Singleton (싱글톤): 객체의 인스턴스를 하나만 생성하고, 이후에는 그 인스턴스를 공유해서 사용하는 패턴. 주로 자원을 공유해야 하는 경우나, 설정 정보 등의 공통된 데이터를 유지해야 하는 경우에 사용된다.
+
+- Visitor (비지터): 객체 구조를 변경하지 않고, 특정한 연산을 적용하기 위한 패턴. 객체 구조가 자주 변경되지 않고, 연산이 자주 추가되는 경우에 유용하다.
+
+- Interpreter (인터프리터): 주어진 언어에 대한 문법을 해석하고 실행하기 위한 패턴. 간단한 언어나 문법이 정해져 있는 경우에 사용된다.
+
+- Template Method (템플릿 메서드): 상위 클래스에서 알고리즘의 뼈대를 정하고, 하위 클래스에서 구체적인 내용을 구현하는 패턴. 공통적인 알고리즘이 있지만, 구체적인 내용이 다를 때 사용된다.
+
+- Builder (빌더): 복잡한 객체의 생성 과정을 단순화하기 위한 패턴. 객체의 생성 과정이 복잡하거나, 다양한 종류의 객체를 생성해야 하는 경우에 사용된다.
+
+- Factory Method (팩토리 메서드): 객체의 생성을 서브 클래스에 위임하는 패턴. 객체를 생성하는 방법이 달라질 때 사용된다.
+
+- Adapter (어댑터): 호환되지 않는 인터페이스를 사용하는 객체들을 연결해주는 패턴. 기존의 코드를 수정하지 않고도 새로운 인터페이스를 사용할 수 있도록 해주는 경우에 사용된다.
+
 - 데이터베이스
   - 모름
 - HTML/CSS/JS
@@ -114,6 +130,110 @@ ClientSocket clientSocket = serverSocket.accept();
 
 ```java
 Socket socket = new Socket(hostname, port);
+```
+
+```java
+// 소켓통신과 쓰레드를 사용한 예제
+import java.io.*;
+import java.net.*;
+import java.util.*;
+
+public class ChatServer {
+    private static final int PORT = 8888;
+    private static HashSet<PrintWriter> writers = new HashSet<>();
+
+    public static void main(String[] args) {
+        System.out.println("채팅 서버 시작...");
+        try (ServerSocket serverSocket = new ServerSocket(PORT)) {
+            while (true) {
+                new ClientHandler(serverSocket.accept()).start();
+            }
+        } catch (IOException e) {
+            System.err.println("서버 에러: " + e.getMessage());
+        }
+    }
+
+    private static class ClientHandler extends Thread {
+        private Socket socket;
+        private BufferedReader in;
+        private PrintWriter out;
+
+        public ClientHandler(Socket socket) {
+            this.socket = socket;
+        }
+
+        public void run() {
+            try {
+                in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+                out = new PrintWriter(socket.getOutputStream(), true);
+
+                synchronized (writers) {
+                    writers.add(out);
+                }
+
+                String message;
+                while ((message = in.readLine()) != null) {
+                    System.out.println("메시지 수신: " + message);
+                    synchronized (writers) {
+                        for (PrintWriter writer : writers) {
+                            writer.println(message);
+                        }
+                    }
+                }
+            } catch (IOException e) {
+                System.err.println("클라이언트 연결 에러: " + e.getMessage());
+            } finally {
+                if (out != null) {
+                    synchronized (writers) {
+                        writers.remove(out);
+                    }
+                }
+                try {
+                    socket.close();
+                } catch (IOException e) {
+                    System.err.println("소켓 종료 에러: " + e.getMessage());
+                }
+            }
+        }
+    }
+}
+
+
+import java.io.*;
+import java.net.*;
+import java.util.*;
+
+public class ChatClient {
+    private static final String SERVER_IP = "127.0.0.1";
+    private static final int SERVER_PORT = 8888;
+
+    public static void main(String[] args) {
+        try {
+            Socket socket = new Socket(SERVER_IP, SERVER_PORT);
+            System.out.println("서버에 연결되었습니다.");
+
+            BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+            PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
+
+            Scanner scanner = new Scanner(System.in);
+            new Thread(() -> {
+                while (true) {
+                    String message = scanner.nextLine();
+                    out.println(message);
+                }
+            }).start();
+
+            String message;
+            while ((message = in.readLine()) != null) {
+                System.out.println("서버로부터 받은 메시지: " + message);
+            }
+        } catch (IOException e) {
+            System.err.println("클라이언트 에러: " + e.getMessage());
+        }
+    }
+}
+
+
 ```
 
 ### 네트워킹에서 문제 해결시 유용한 메서드
