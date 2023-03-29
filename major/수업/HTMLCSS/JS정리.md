@@ -35,3 +35,42 @@ function getExpensiveProducts(products){
 const expensiveProducts = getExpensiveProducts(allProducts);
 console.log(expensiveProducts);
 ```
+
+### 콜백함수
+
+```javascript
+
+function sayHello(){
+    console.log('안녕ㅎ~');
+}
+
+function getHuman(callback) {
+    callback();
+}
+
+getHuman(sayHello);
+```
+
+```javascript
+//fetch 함수를 실행하면 Promise 객체를 반환해요.
+var result = fetch('https://jsonplaceholder.typicode.com/todos/1')
+//result에는 Promise 객체가 들어있습니다.
+
+console.log('네트워크 통신이 끝날 떄 까지 기다리지 않고 바로 실행되요 1');
+result.then(function(response){
+ console.log('이 코드는 네트워크 통신이 끝나고 나서 실행되요.')
+}).catch(function(error){
+ console.log('이 코드는 에러가 났을 때 실행되요')
+})
+console.log('네트워크 통신이 끝날 떄 까지 기다리지 않고 바로 실행되요 2');
+```
+
+```javascript
+fetch('URL주소')
+.then(function(response){
+
+})
+.catch(err = > {
+
+})
+```
