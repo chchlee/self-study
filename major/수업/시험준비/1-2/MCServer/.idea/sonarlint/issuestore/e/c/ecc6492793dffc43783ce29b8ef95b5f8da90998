@@ -1,0 +1,13 @@
+
+D
+java:S2189""Add an end condition to this loop.(˜ïˆÿÿÿÿÿ8Õ¡Ğó0
+t
+java:S1450*"WRemove the "clientId" field and declare it as a local variable in the relevant methods.(ÙÌ¨8Ú¡Ğó0
+n
+java:S1450("QRemove the "in" field and declare it as a local variable in the relevant methods.(»ğ¶ü8Ú¡Ğó0
+o
+java:S1450)"RRemove the "out" field and declare it as a local variable in the relevant methods.(¨¥ÑÓ8Ú¡Ğó0
+o
+java:S37761"RRefactor this method to reduce its Cognitive Complexity from 20 to the 15 allowed.(“–ış8Û¡Ğó0
+I
+java:S1068"-Remove this unused "blacklist" private field.(â€¿h8ã¡Ğó0

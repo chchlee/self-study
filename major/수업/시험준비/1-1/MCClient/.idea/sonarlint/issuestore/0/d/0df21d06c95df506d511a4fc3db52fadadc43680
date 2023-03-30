@@ -1,0 +1,9 @@
+
+r
+java:S1450"URemove the "reader" field and declare it as a local variable in the relevant methods.(ú§Âµ8çÌâó0
+w
+java:S1450"URemove the "socket" field and declare it as a local variable in the relevant methods.(Å’¬Úşÿÿÿÿ8çÌâó0
+w
+java:S1450"URemove the "writer" field and declare it as a local variable in the relevant methods.(†¦ÈŒÿÿÿÿÿ8çÌâó0
+n
+java:S3776D"RRefactor this method to reduce its Cognitive Complexity from 19 to the 15 allowed.(ú¡­,8ïÌâó0

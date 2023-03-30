@@ -1,0 +1,9 @@
+
+t
+java:S1450"WRemove the "clientId" field and declare it as a local variable in the relevant methods.(ÙÌ¨8ğùó0
+n
+java:S1450"QRemove the "in" field and declare it as a local variable in the relevant methods.(»ğ¶ü8ñùó0
+o
+java:S1450"RRemove the "out" field and declare it as a local variable in the relevant methods.(¨¥ÑÓ8ñùó0
+o
+java:S3776"RRefactor this method to reduce its Cognitive Complexity from 20 to the 15 allowed.(“–ış8òùó0

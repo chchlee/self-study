@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>회원가입</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="../js/main.js"></script>
+</head>
+
+<body>
+    <form id="register-form">
+        <h1>회원가입</h1>
+        <div>
+            <label for="userId">아이디</label>
+            <input type="text" id="userId" name="userId">
+            <span class="error-message" id="userId-error"> <button type="button" id="check-duplicate-btn">중복확인</button>
+            </span>
+        </div>
+        <div>
+            <label for="userName">이름</label>
+            <input type="text" id="userName" name="userName">
+            <span class="error-message" id="userName-error"></span>
+        </div>
+        <div>
+            <label for="password1">비밀번호</label>
+            <input type="password" id="password1" name="password1">
+            <span class="error-message" id="password1-error"></span>
+        </div>
+        <div>
+            <label for="password2">비밀번호 확인</label>
+            <input type="password" id="password2" name="password2">
+            <span class="error-message" id="password2-error"></span>
+        </div>
+        <button type="submit" id="register-btn">가입하기</button>
+    </form>
+</body>
+
+</html>
