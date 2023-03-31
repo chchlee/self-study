@@ -215,6 +215,7 @@ $ git clone url
 - Pull Request를 잘못 보냈을 경우, 하단의 `Close Pull Request`를 선택하는 액션
 - Pull Request를 잘못 merge 하는 경우 `Merge Pull request` 하는 액션
 
+
 우선 Meerge를 진행하고, 다시 IntelliJ로 돌아와 develop 브랜치로 돌아가 `Update Project` 선택 후 Pull을 받아준다.
 
 <div algin="center">
