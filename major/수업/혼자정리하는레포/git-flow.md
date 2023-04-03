@@ -11,8 +11,6 @@
     - release : 이전 출시 버전을 준비하는 브랜치
     - hotfix : 출시 버전에서 발생한 버그를 수정하는 브랜치
 
-
-
 <div align="center">
 <h2>Git Flow의 브랜치 전략</h2>
 <img src="https://user-images.githubusercontent.com/97272787/226171772-afdec662-6c50-48e7-8a14-c9baaa0c4dca.png">

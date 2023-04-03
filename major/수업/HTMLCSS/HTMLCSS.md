@@ -49,7 +49,7 @@
 }
 ```
 
-|값|의미|기본값|
+|값|ro의미|기본값|fle
 |--|--|--|
 |flex-direction|Items의 주 축을 설정|row|
 |flex-wrap|Items의 여러 줄 묶음 설정|nowrap|
@@ -122,3 +122,6 @@
 <div align="center">
 <img src="https://heropy.blog/images/screenshot/css-flexible-box/flex-align-items.jpg">
 </div>
+
+#### 참고
+<a href="https://heropy.blog/2018/11/24/css-flexible-box/">https://heropy.blog/2018/11/24/css-flexible-box/d</a>
