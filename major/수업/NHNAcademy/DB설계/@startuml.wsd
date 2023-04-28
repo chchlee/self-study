@@ -1,0 +1,119 @@
+@startuml
+!define table(x) class x << (T,#FFAAAA) >>
+
+table(PAX) {
+    +PAX_ID [PK]
+    --
+    Name
+    Date_of_Birth
+    Gender
+    Passport_Number
+    Passport_Issuing_Country
+    Passport_Expiration_Date
+    Nationality
+    Contact_Information
+    Frequent_Flyer_Number
+}
+table(SEG) {
+    +SEG_ID [PK]
+    --
+    Reservation_Number
+    Flight_Number
+    Departure_City
+    Arrival_City
+    Departure_Date
+    Arrival_Date
+    Departure_Time
+    Arrival_Time
+    Seat_Class
+    Baggage_Allowance
+    Status
+}
+table(Ticket) {
+    +Ticket_ID [PK]
+    --
+    PAX_ID [FK]
+    SEG_ID [FK]
+    Seat_Number
+    Ticket_Price
+}
+table(Coupon) {
+    +Coupon_ID [PK]
+    --
+    SEG_ID [FK]
+    Coupon_Code
+    Coupon_Validity_Period
+    Coupon_Discount_Amount
+}
+table(AdditionalService) {
+    +AdditionalService_ID [PK]
+    --
+    Ticket_ID [FK]
+    Service_Type
+    Service_Price
+}
+table(Fare) {
+    +Fare_ID [PK]
+    --
+    Ticket_ID [FK]
+    Base_Fare
+    Discounted_Fare
+}
+table(Tax) {
+    +Tax_ID [PK]
+    --
+    Ticket_ID [FK]
+    Tax_Type
+    Tax_Amount
+}
+table(PaymentMethod) {
+    +PaymentMethod_ID [PK]
+    --
+    Ticket_ID [FK]
+    Payment_Method_Type
+    Card_Information
+    Payment_Date
+    Payment_Amount
+}
+table(Refund) {
+    +Refund_ID [PK]
+    --
+    Ticket_ID [FK]
+    Refund_Request_Date
+    Refund_Processed_Date
+    Refund_Amount
+}
+table(RefundPaymentMethod) {
+    +RefundPaymentMethod_ID [PK]
+    --
+    Refund_ID [FK]
+    Refund_Method_Type
+    Refund_Card_Information
+}
+table(RefundTax) {
+    +RefundTax_ID [PK]
+    --
+    Refund_ID [FK]
+    Refund_Tax_Type
+    Refund_Tax_Amount
+}
+table(RefundFare) {
+    +RefundFare_ID [PK]
+    --
+    Refund_ID [FK]
+    Refund_Base_Fare
+    Refund_Discounted_Fare
+}
+PAX "1" -- "N" Ticket
+SEG "1" -- "1" Coupon
+Ticket "1" -- "N" AdditionalService
+Ticket "1" -- "N" PaymentMethod
+Ticket "1" -- "1" Refund
+Refund "1" -- "1" RefundPaymentMethod
+Refund "1" -- "N" RefundTax
+Refund "1" -- "1" RefundFare
+SEG "1" -- "N" Ticket
+PAX "1" -- "N" SEG
+Ticket "1" -- "1" Fare
+Ticket "1" -- "N" Tax
+@enduml
