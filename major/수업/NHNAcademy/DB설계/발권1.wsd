@@ -1,0 +1,162 @@
+@startuml
+
+!define Table(name,desc) class name as "desc" << (T,#FFAAAA) >>
+!define primary_key(x) <u>x</u>
+!define foreign_key(x) #x#
+
+entity "PAX" as pax {
+  primary_key(PAX_ID)
+  --
+  이름 (Name)
+  생년월일 (Date of Birth)
+  성별 (Gender)
+  여권 번호 (Passport Number)
+  여권 발행국 (Passport Issuing Country)
+  여권 만료일 (Passport Expiration Date)
+  국적 (Nationality)
+  연락처 (Contact Information)
+  고객번호 (Frequent Flyer Number)
+}
+
+entity "SEG" as seg {
+  primary_key(SEG_ID)
+  --
+  예약 번호 (Reservation_ID)
+  항공편 번호 (Flight Number)
+  출발지 (Departure City)
+  도착지 (Arrival City)
+  출발일 (Departure Date)
+  도착일 (Arrival Date)
+  출발 시간 (Departure Time)
+  도착 시간 (Arrival Time)
+  좌석 클래스 (Seat Class)
+  수하물 규정 (Baggage Allowance)
+  상태 (Status)
+}
+
+entity "Fare" as fare {
+  primary_key(Segment_SET_ID)
+  --
+  여행 클래스 (Travel_Class)
+  세금 및 수수료 (Tax_Fees)
+  총 운임 (Total_Fare)
+  규정 및 조건 (Rules_Conditions)
+  예약 기간 시작 (Booking_Period_Start)
+  예약 기간 종료 (Booking_Period_End)
+  유효 기간 시작 (Validity_Period_Start)
+  유효 기간 종료 (Validity_Period_End)
+}
+
+entity "Ticket" as ticket {
+  primary_key(Ticket_ID)
+  --
+  좌석 번호 (Seat Number)
+  티켓 가격 (Ticket Price)
+}
+
+entity "Coupon" as coupon {
+  primary_key(Coupon_ID)
+  --
+  쿠폰 코드 (Coupon Code)
+  쿠폰 사용 유효 기간 (Coupon Validity Period)
+  쿠폰 할인 금액 (Coupon Discount Amount)
+}
+
+entity "AdditionalService" as additionalservice {
+  primary_key(Service_ID)
+  --
+  서비스 종류 (Service Type)
+  서비스 가격 (Service Price)
+}
+
+entity "Tax" as tax {
+  primary_key(Tax_ID)
+  --
+  세금 종류 (Tax Type)
+  세금 금액 (Tax Amount)
+}
+
+entity "PaymentMethod" as paymentmethod {
+  primary_key(PaymentMethod_ID)
+  --
+  결제 수단 종류 (Payment Method Type)
+
+
+카드 정보 (Card Information)
+결제 날짜 (Payment Date)
+결제 금액 (Payment Amount)
+}
+
+entity "Refund" as refund {
+
+primary_key(Refund_ID)
+환불 신청 날짜 (Refund Request Date)
+환불 처리 날짜 (Refund Processed Date)
+환불 금액 (Refund Amount)
+}
+
+entity "RefundPaymentMethod" as refundpaymentmethod {
+
+primary_key(RefundPaymentMethod_ID)
+환불 수단 종류 (Refund Method Type)
+환불 카드 정보 (Refund Card Information)
+}
+
+entity "RefundTax" as refundtax {
+
+primary_key(RefundTax_ID)
+환불 세금 종류 (Refund Tax Type)
+환불 세금 금액 (Refund Tax Amount)
+}
+
+entity "RefundFare" as refundfare {
+
+primary_key(RefundFare_ID)
+환불 기본운임 (Refund Base Fare)
+환불 할인운임 (Refund Discounted Fare)
+}
+
+entity "TicketPaymentMethodRelationship" as ticketpaymentmethodrelationship {
+
+primary_key(TicketPaymentMethodRelationship_ID)
+foreign_key(Ticket_ID)
+foreign_key(PaymentMethod_ID)
+}
+
+entity "PAXTicketRelationship" as paxticketrelationship {
+
+primary_key(PAXTicketRelationship_ID)
+foreign_key(PAX_ID)
+foreign_key(Ticket_ID)
+}
+
+entity "SEGReservation" as segreservation {
+
+primary_key(SEGReservation_ID)
+foreign_key(SEG_ID)
+foreign_key(Reservation_ID)
+}
+
+pax -- paxticketrelationship
+paxticketrelationship -- ticket
+
+seg -- segreservation
+segreservation -- fare
+
+ticket -- ticketpaymentmethodrelationship
+ticketpaymentmethodrelationship -- paymentmethod
+
+ticket -- additionalservice
+
+ticket -- refund
+refund -- refundpaymentmethod
+refund -- refundtax
+refund -- refundfare
+
+seg -- coupon
+
+seg -- ticket
+ticket -- fare
+
+ticket -- tax
+@enduml
