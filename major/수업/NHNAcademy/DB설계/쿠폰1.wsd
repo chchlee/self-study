@@ -1,0 +1,74 @@
+@startuml
+
+entity "coupon_template" as coupon_template {
+  * coupon_template_number: bigint (쿠폰 템플릿 번호)
+  * coupon_type_number: bigint (쿠폰 유형 번호)
+  * coupon_state_code_number: int (쿠폰 상태 코드 번호)
+  * coupon_policy_number: bigint (쿠폰 정책 번호)
+  * product_number: bigint (제품 번호)
+  * category_number: int (카테고리 번호)
+  * coupon_template_name: varchar(50) (쿠폰 템플릿 이름)
+  * coupon_template_finished_at: datetime (쿠폰 템플릿 종료 시간)
+  * coupon_template_bundled: boolean (쿠폰 템플릿 번들 여부)
+}
+
+entity "coupon_policy" as coupon_policy {
+  * coupon_policy_number: int (쿠폰 정책 번호)
+  * coupon_policy_fixed: boolean (쿠폰 정책 고정 여부)
+  * coupon_policy_price: bigint (쿠폰 정책 가격)
+  * coupon_policy_minumum: bigint (쿠폰 정책 최소 금액)
+  * coupon_policy_max_discount: bigint (쿠폰 정책 최대 할인액)
+}
+
+entity "coupon_type" as coupon_type {
+  * coupon_type_number: bigint (쿠폰 유형 번호)
+  * coupon_type_name: varchar(10) (쿠폰 유형 이름)
+}
+
+entity "coupon_month" as coupon_month {
+  * coupon_month_number: bigint (쿠폰 월별 번호)
+  * coupon_template_number: bigint (쿠폰 템플릿 번호)
+  * coupon_month_opened_at: datetime (쿠폰 월별 시작 시간)
+  * coupon_month_quantity: int (쿠폰 월별 수량)
+}
+
+entity "coupon_state_code" as coupon_state_code {
+  * coupon_state_code_number: int (쿠폰 상태 코드 번호)
+  * coupon_state_code_target: varchar(5) (쿠폰 상태 코드 대상)
+  * coupon_state_code_used: boolean (쿠폰 상태 코드 사용 여부)
+  * coupon_state_code_info: varchar(100) (쿠폰 상태 코드 정보)
+}
+
+entity "coupon" as coupon {
+  * coupon_number: bigint (쿠폰 번호)
+  * coupon_template_number: bigint (쿠폰 템플릿 번호)
+  * member_number: bigint (회원 번호)
+  * order_number: bigint (주문 번호)
+  * order_product_number: bigint (주문 제품 번호)
+  * coupon_used: boolean (쿠폰 사용 여부)
+  * coupon_used_at: datetime (쿠폰 사용 시간)
+}
+
+entity "tier_and_coupon" as tier_and_coupon {
+  * coupon_template_number: bigint (쿠폰 템플릿 번호)
+  * tier_number: int (티어 번호)
+}
+
+entity "tier" as tier {
+
+tier_number: int (티어 번호)
+tier_name: varchar(10) (티어 이름)
+tier_value: int (티어 값)
+tier_price: bigint (티어 가격)
+tier_point: bigint (티어 포인트)
+}
+' Relationships
+coupon_template "1" -- "N" coupon_month : coupon_template (1) - coupon_month (N)
+coupon_template "1" -- "N" coupon : coupon_template (1) - coupon (N)
+coupon_template "1" -- "N" tier_and_coupon : coupon_template (1) - tier_and_coupon (N)
+coupon_policy "1" -- "N" coupon_template : coupon_policy (1) - coupon_template (N)
+coupon_type "1" -- "N" coupon_template : coupon_type (1) - coupon_template (N)
+coupon_state_code "1" -- "N" coupon_template : coupon_state_code (1) - coupon_template (N)
+tier "1" -- "N" tier_and_coupon : tier (1) - tier_and_coupon (N)
+
+@enduml

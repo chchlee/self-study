@@ -1,0 +1,66 @@
+@startuml
+
+entity "Customer" as customer {
+  +고객ID (PK)
+}
+
+entity "IndividualCustomer" as individualCustomer {
+  +고객ID (PK, FK)
+}
+
+entity "RegularMember" as regularMember {
+  +고객ID (PK, FK)
+}
+
+entity "SimpleMember" as simpleMember {
+  +고객ID (PK, FK)
+}
+
+entity "CorporateCustomer" as corporateCustomer {
+  +고객ID (PK, FK)
+  법인명
+  대표자명
+}
+
+entity "CustomerIdentification" as customerIdentification {
+  +식별ID (PK)
+  -고객ID (FK)
+  식별정보타입 (주민등록증/여권)
+  식별정보번호
+}
+
+entity "PreferredFlightInfo" as preferredFlightInfo {
+  +선호ID (PK)
+  -고객ID (FK)
+  비행정보
+}
+
+entity "CorporateCustomerEmployee" as corporateCustomerEmployee {
+  +직원ID (PK)
+  -개인고객ID (FK)
+  -법인고객ID (FK)
+  직위
+  부서
+}
+
+entity "CorporateBenefits" as corporateBenefits {
+  +혜택ID (PK)
+  -법인고객ID (FK)
+  혜택내용
+  협약시작일
+  협약종료일
+}
+
+customer <|-- individualCustomer : ISA
+customer <|-- corporateCustomer : ISA
+
+individualCustomer <|-- regularMember : ISA
+individualCustomer <|-- simpleMember : ISA
+
+customer "1" -- "N" customerIdentification
+customer "1" -- "N" preferredFlightInfo
+individualCustomer "1" -- "N" corporateCustomerEmployee
+corporateCustomer "1" -- "1" corporateCustomerEmployee
+corporateCustomer "1" -- "N" corporateBenefits
+
+@enduml

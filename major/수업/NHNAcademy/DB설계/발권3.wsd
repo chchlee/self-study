@@ -1,0 +1,145 @@
+
+@startuml
+
+entity "PAX Entity" as pax {
+
+Name (이름)
+Date of Birth (생년월일)
+Gender (성별)
+Passport Number (여권 번호)
+Passport Issuing Country (여권 발행국)
+Passport Expiration Date (여권 만료일)
+Nationality (국적)
+Contact Information (연락처)
+Frequent Flyer Number (고객번호)
+}
+entity "SEG Entity" as seg {
+
+SEG_ID (구간 ID)
+Reservation_ID (예약 번호)
+Flight Number (항공편 번호)
+Departure City (출발지)
+Arrival City (도착지)
+Departure Date (출발일)
+Arrival Date (도착일)
+Departure Time (출발 시간)
+Arrival Time (도착 시간)
+Seat Class (좌석 클래스)
+Baggage Allowance (수하물 규정)
+Status (상태)
+}
+entity "Fare Entity" as fare {
+
+Segment_SET_ID (구간 SET ID)
+Travel_Class (여행 클래스)
+Tax_Fees (세금 및 수수료)
+Total_Fare (총 운임)
+Rules_Conditions (규정 및 조건)
+Booking_Period_Start (예약 기간 시작)
+Booking_Period_End (예약 기간 종료)
+Validity_Period_Start (유효 기간 시작)
+Validity_Period_End (유효 기간 종료)
+}
+entity "Ticket Entity" as ticket {
+
+Seat Number (좌석 번호)
+Ticket Price (티켓 가격)
+}
+entity "Coupon Entity" as coupon {
+
+Coupon Code (쿠폰 코드)
+Coupon Name (쿠폰 이름)
+Coupon Validity Period (쿠폰 사용 유효 기간)
+Coupon Expiration Date (쿠폰 만료일)
+Coupon Discount Amount (쿠폰 할인 금액)
+Coupon Usage Time (쿠폰 사용 시간)
+Coupon Used (쿠폰 사용 여부)
+Bundle Discount (묶음 할인 여부)
+}
+entity "AdditionalService Entity" as additional_service {
+
+Service Type (서비스 종류)
+Service Price (서비스 가격)
+}
+entity "Tax Entity" as tax {
+
+Tax Type (세금 종류)
+Tax Amount (세금 금액)
+}
+entity "PaymentMethod Entity" as payment_method {
+
+Payment Method Type (결제 수단 종류)
+Card Information (카드 정보)
+Payment Date (결제 날짜)
+Payment Amount (결제 금액)
+}
+entity "Refund Entity" as refund {
+
+Refund Request Date (환불 신청 날짜)
+Refund Processed Date (환불 처리 날짜)
+Refund Amount (환불 금액)
+}
+entity "RefundPaymentMethod Entity" as refund_payment_method {
+
+Refund Method Type (환불 수단 종류)
+Refund Card Information (환불 카드 정보)
+}
+entity "RefundTax Entity" as refund_tax {
+
+Refund Tax Type (환불 세금 세금 종류)
+Refund Tax Amount (환불 세금 금액)
+}
+entity "RefundFare Entity" as refund_fare {
+
+Refund Base Fare (환불 기본운임)
+Refund Discounted Fare (환불 할인운임)
+}
+entity "TicketPaymentMethodRelationship Entity" as ticket_payment_method_relationship {
+
+Ticket_ID (티켓 ID)
+PaymentMethod_ID (결제수단 ID)
+}
+entity "PAXTicketEntity" as pax_ticket {
+
+PAX_ID (탑승객 ID)
+Ticket_ID (티켓 ID)
+}
+entity "SEGReservation Entity" as seg_reservation {
+
+SEG_ID (구간 ID)
+Reservation_ID (예약 번호)
+}
+entity "CouponStatus Entity" as coupon_status {
+
+Status_ID (상태 ID)
+Target (적용 타겟)
+Used (사용 여부)
+Information (정보)
+}
+entity "CouponPolicy Entity" as coupon_policy {
+
+CouponPolicy_ID (쿠폰 정책 ID)
+FixedAmount (정액 여부)
+DiscountPrice (할인 가격)
+MinimumOrderAmount (최소 주문 금액)
+MaximumDiscountAmount (최대 할인 금액)
+}
+' Relationships
+pax "1" -- "N" pax_ticket : PAX (1) - PAXTicketRelationship (N)
+ticket "1" -- "N" pax_ticket : Ticket (1) - PAXTicketRelationship (N)
+seg "1" -- "N" seg_reservation : SEG (1) - SEGReservation (N)
+seg "1" -- "N" coupon : SEG (1) - Coupon (1)
+ticket "1" -- "N" additional_service : Ticket (1) - AdditionalService (N)
+ticket "1" -- "1" refund : Ticket (1) - Refund (1)
+refund "1" -- "1" refund_payment_method : Refund (1) - RefundPaymentMethod (1)
+refund "1" -- "N" refund_tax : Refund (1) - RefundTax (N)
+refund "1" -- "1" refund_fare : Refund (1) - RefundFare (1)
+seg "1" -- "N" ticket : SEG (1) - Ticket (N)
+ticket "1" -- "1" fare : Ticket (1) - Fare (1)
+ticket "1" -- "N" tax : Ticket (1) - Tax (N)
+ticket "1" -- "N" ticket_payment_method_relationship : Ticket (1) - TicketPaymentMethodRelationship (N)
+payment_method "1" -- "N" ticket_payment_method_relationship : PaymentMethod (1) - TicketPaymentMethodRelationship (N)
+coupon "1" -- "N" coupon_status : Coupon (1) - CouponStatus (N)
+coupon "1" -- "1" coupon_policy : Coupon (1) - CouponPolicy (1)
+
+@enduml
