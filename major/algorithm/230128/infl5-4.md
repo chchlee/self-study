@@ -19,6 +19,7 @@ public class Main {
                 stack.push(x-48);
             }else {
                 int rt = stack.pop();
+
                 int lt = stack.pop();
                 if(x=='+'){
                     stack.push(lt+rt);
