@@ -1,11 +1,11 @@
 @startuml
 
 actor 사용자 as "User"
-entity "웹 서버\n(Spring Boot)" as Server
-entity "메시지 컨트롤러\n(Sound Message Controller)" as Controller
-entity "사운드 서비스\n(텍스트로 사운드 찾기)" as Service
-database "데이터베이스\n(텍스트로 사운드 찾기)" as Database
-entity "파일 서버\n(사운드 파일 제공)" as FileServer
+entity "웹 서버\n(Tomcat)" as Server
+entity "Message Controller\n(Sound Message Controller)" as Controller
+entity "Sound Service\n(텍스트로 사운드 찾기)" as Service
+database "MySQL\n(텍스트로 사운드 찾기)" as Database
+entity "FileServer\n(사운드 파일 제공)" as FileServer
 
 사용자 -> Server: 텍스트 전송
 Server -> Controller: 텍스트 전달
