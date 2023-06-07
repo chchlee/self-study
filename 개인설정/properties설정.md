@@ -142,11 +142,10 @@ spring.jpa.properties.hibernate.dialect = org.hibernate.dialect.H2Dialect
 spring.jpa.hibernate.ddl-auto = create
 ```
 
-```java
-@DataJpaTest
-@TestPropertiesSource(locations="classpath:application-test-h2.properties")
-class HelloTest {
-  ...
-}
-```
+### java -D?
 
+```zsh
+java -DmyProperty=myValue -jar myApp.jar
+
+java -Dlogging.level.org.springframework=DEBUG -jar mySpringBootApp.jar
+```

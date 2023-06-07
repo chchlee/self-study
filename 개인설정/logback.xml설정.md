@@ -1,0 +1,26 @@
+# logback
+
+- logback의 설정은 main/resource/ 위치에서 logback.spring.xml 파일을 만들면 적용
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+
+<configuration>
+    <timestamp key="BY_DATE" datePattern="yyyy-MM-dd"/>
+    <property name="LOG_PATTERN"
+              value="[%d{yyyy-MM-dd HH:mm:ss}:%-4relative] %green([%thread]) %highlight(%-5level) %boldWhite([%C.%M:%yellow(%L)]) - %msg%n"/>
+
+    <springProfile name="!prod">
+        <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+            <encoder>
+                <pattern>${LOG_PATTERN}</pattern>
+            </encoder>
+        </appender>
+
+        <root level="INFO">
+            <appender-ref ref="CONSOLE"/>
+        </root>
+    </springProfile>
+
+</configuration>
+```
