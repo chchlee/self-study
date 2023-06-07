@@ -104,3 +104,49 @@ spring.jpa.hibernate.naming.implicit-strategy
 
 ## application.properties에서 Hikari DataSource 설정
 
+```properties
+## DataSource Type Configuration. 어떤 구현체를 사용할지 명시적으로 설정. Hikari를 사용
+spring.datasource.type=com.zaxxer.hikari.HikariDataSource
+
+## Hikari DataSource Configuration
+
+### MySQL 서버의 시간대역을 설정하는 것으로 시간대 설정
+spring.datasource.hikari.jdbc-url=jdbc:mysql://127.0.0.1:3306/account-mysql?serverTimeZone = UTC
+spring.datasource.hikari.driver-class-name=com.mysql.cj.jdbc.Driver
+
+spring.datasource.hikari.username=root
+spring.datasource.hikari.password=password
+
+### Connection 객체를 받아오는 최대 대기 시간. 스프링 트랙잭션 모듈이 이 시간동안 Connection 객체를 받아오지 못하면 예외(SQLException) 발생
+spring.datasource.hikari.connection-timeout=5000
+
+### HikariDataSource의 데이터베이스 커넥션 풀에서 관리할 수 있는 최대 커넥션 개수
+spring.datasource.hikari.maximum-pool-size=5
+spring.datasource.hikari.max-lifetime=18000000
+spring.datasource.hikari.idle-timeout=600000
+
+# spring.datasource.hikari.connection-test-query = select 1
+```
+
+## application-test-h2.properties 설정
+
+```properties
+spring.main.web-application-type = none
+
+## JPA configuration
+spring.jpa-open-in-view = false
+spring.jpa.show.sql = true
+spring.jpa.properties.hibernate.format_sql = true
+spring.jpa.properties.hibernate.generate_statistics = true
+spring.jpa.properties.hibernate.dialect = org.hibernate.dialect.H2Dialect
+spring.jpa.hibernate.ddl-auto = create
+```
+
+```java
+@DataJpaTest
+@TestPropertiesSource(locations="classpath:application-test-h2.properties")
+class HelloTest {
+  ...
+}
+```
+
