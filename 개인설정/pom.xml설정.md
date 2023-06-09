@@ -13,6 +13,8 @@
   <groupId>com.querydsl</groupId>
   <artifactId>querydsl-jpa</artifactId>
 </dependency>
+
+
 //플러그인 부분
 
 <plugin>
